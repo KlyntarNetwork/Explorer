@@ -13,6 +13,7 @@ export interface Pool {
     storageAbstractionLastPayment: number;
   };
   poolStorage: {
+    activated: boolean;
     percentage: number;
     totalStakedKly: number;
     totalStakedUno: number;

@@ -19,6 +19,7 @@ describe('fetchPoolById Integration Test', () => {
 
     expect(typeof result.poolMetadata.storageAbstractionLastPayment).toBe('number');
 
+    expect(typeof result.poolStorage.activated).toBe('booolean');
     expect(typeof result.poolStorage.percentage).toBe('number');
     expect(typeof result.poolStorage.totalStakedKly).toBe('number');
     expect(typeof result.poolStorage.totalStakedUno).toBe('number');

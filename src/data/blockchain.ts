@@ -7,28 +7,28 @@ import { getInfoFromEpoch, getTxSuccessRate } from './utils';
 
 export async function fetchBlockchainData(): Promise<BlockchainData> {
   try {
-    const blocksAndTxsData = await api.get<BlockStats>(API_ROUTES.STATS.VERIFICATION_THREAD_STATS);
-    const epochData = await fetchCurrentEpoch();
-    const blocksAndTxsDataByEpoch = await fetchTotalBlocksAndTxsByEpoch(epochData.id);
+    const verificationThreadStats = await api.get<BlockStats>(API_ROUTES.STATS.VERIFICATION_THREAD_STATS);
+    const epochMetadata = await fetchCurrentEpoch();
+    const verificationThreadStatsPerEpoch = await fetchTotalBlocksAndTxsByEpoch(epochMetadata.id);
     const chainData = await api.get<ChainInfo>(API_ROUTES.CHAIN.INFO);
 
-    const { shardsNumber, validatorsNumber } = getInfoFromEpoch(epochData);
+    const { shardsNumber, validatorsNumber } = getInfoFromEpoch(epochMetadata);
 
-    const txsSuccessRate = getTxSuccessRate(blocksAndTxsData);
+    const txsSuccessRate = getTxSuccessRate(verificationThreadStats);
 
     const slotTimeInSeconds = chainData.approvementThread.params.BLOCK_TIME / 1000;
 
-    const totalStaked = validatorsNumber * chainData.approvementThread.params.VALIDATOR_STAKE;
+    const totalStaked = verificationThreadStats.totalKlyStaked;
 
     return {
       shardsNumber,
       validatorsNumber,
       txsSuccessRate,
-      epochId: epochData.id,
+      epochId: epochMetadata.id,
       slotTimeInSeconds,
-      totalBlocksNumber: formatNumber(blocksAndTxsData.totalBlocksNumber),
-      totalTxsNumber: formatNumber(blocksAndTxsData.totalTxsNumber),
-      totalBlocksNumberInCurrentEpoch: formatNumber(blocksAndTxsDataByEpoch.totalBlocksNumber),
+      totalBlocksNumber: formatNumber(verificationThreadStats.totalBlocksNumber),
+      totalTxsNumber: formatNumber(verificationThreadStats.totalTxsNumber),
+      totalBlocksNumberInCurrentEpoch: formatNumber(verificationThreadStatsPerEpoch.totalBlocksNumber),
       totalStaked: formatNumber(totalStaked),
       chainInfo: {
         networkId: chainData.genesis.networkID,

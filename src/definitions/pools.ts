@@ -7,7 +7,7 @@ export interface Pool {
   poolMetadata: {
     type: string;
     lang: string;
-    balance: number;
+    balance: string;
     gas: number;
     storages: string[];
     storageAbstractionLastPayment: number;
@@ -15,8 +15,8 @@ export interface Pool {
   poolStorage: {
     activated: boolean;
     percentage: number;
-    totalStakedKly: number;
-    totalStakedUno: number;
+    totalStakedKly: string;
+    totalStakedUno: string;
     stakers: Stakers;
     poolURL: string;
     wssPoolURL: string;
@@ -25,8 +25,8 @@ export interface Pool {
 
 export interface Stakers {
   [key: string]: {
-    kly: number;
-    uno: number;
-    reward: number;
+    kly: string;
+    uno: string;
+    reward: string;
   }
 }

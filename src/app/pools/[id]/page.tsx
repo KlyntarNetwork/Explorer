@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
-import { ContentBlock, EntityPageLayout, Label, PageContainer } from '@/components/ui';
+import { ContentBlock, EntityPageLayout, PageContainer } from '@/components/ui';
 import { Box, Typography } from '@mui/material';
 import { fetchPoolById } from '@/data';
 import { formatNumber, truncateMiddle } from '@/helpers';
 import { StakersTable } from './StakersTable';
 import PoolImage from '@public/icons/pages/pool.svg';
+import Web3 from 'web3';
 
 interface Props {
   params: {
@@ -28,7 +29,7 @@ export default async function PoolByIdPage({ params }: Props) {
           value: truncateMiddle(poolId),
           label: {
             variant: pool.isActiveValidator ? 'green' : 'red',
-            value: `${pool.poolStorage.totalStakedKly} (${pool.isActiveValidator ? 'sufficient to be validator' : 'insufficient to be validator'})`
+            value: `${ Web3.utils.fromWei(pool.poolStorage.totalStakedKly,'ether')} (${pool.isActiveValidator ? 'sufficient to be validator' : 'insufficient to be validator'})`
           },
           actionText: {
             value: 'Total staking power'
@@ -51,13 +52,13 @@ export default async function PoolByIdPage({ params }: Props) {
             <ContentBlock
               key='kly'
               title='Staked KLY:'
-              value={formatNumber(pool.poolStorage.totalStakedKly)}
+              value={Web3.utils.fromWei(pool.poolStorage.totalStakedKly,'ether')}
             />
             ,
             <ContentBlock
               key='uno'
               title='Staked UNO (multistaking points):'
-              value={formatNumber(pool.poolStorage.totalStakedUno)}
+              value={Web3.utils.fromWei(pool.poolStorage.totalStakedUno,'ether')}
             />
           ]
         ]}

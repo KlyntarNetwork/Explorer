@@ -6,6 +6,7 @@ import { ContentBlock, EntityPageLayout, Label, PageContainer, TransactionsTable
 import { ContractAccount } from '@/definitions';
 import ContractImage from '@public/icons/pages/contract.svg';
 import NotFoundPage from '@/app/not-found';
+import Web3 from 'web3';
 
 export const metadata: Metadata = {
   title: 'Account info',
@@ -54,7 +55,7 @@ export default async function ContractByIdPage({ params }: Props) {
           </ContentBlock>,
           <ContentBlock key='shard' title='Shard:' value={shardId}/>,
           [
-            <ContentBlock key='balance' title='Balance:' value={contract.balance + ' KLY'}/>,
+            <ContentBlock key='balance' title='Balance:' value={ Web3.utils.fromWei(contract.balance,'ether') + ' KLY'}/>,
           ],
           [
             <ContentBlock

@@ -1,6 +1,6 @@
 export interface UserAccount {
   type: string;
-  balance: number;
+  balance: string;
   nonce: number;
   gas: number;
   pqcPub?: string;
@@ -10,7 +10,7 @@ export interface UserAccount {
 export interface ContractAccount {
   type: string;
   lang: string;
-  balance: number;
+  balance: string;
   gas: number;
   storages: string[];
   storageAbstractionLastPayment: number;

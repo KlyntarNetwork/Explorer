@@ -7,6 +7,7 @@ import { fetchAccountById, fetchAccountTransactions } from '@/data';
 import { truncateMiddle } from '@/helpers';
 import { UserAccount} from '@/definitions';
 import AccountImage from '@public/icons/pages/account.svg';
+import Web3 from 'web3';
 
 export const metadata: Metadata = {
   title: 'Account info',
@@ -45,7 +46,7 @@ export default async function AccountByIdPage({ params }: Props) {
           </ContentBlock>,
           <ContentBlock key='shard' title='Shard:' value={shard}/>,
           [
-            <ContentBlock key='balance' title='Balance:' value={account.balance + ' KLY'}/>,
+            <ContentBlock key='balance' title='Balance:' value={Web3.utils.fromWei(account.balance,'ether') + ' KLY'}/>,
           ],
           [
             <ContentBlock key='nonce' title='Nonce:' value={account.nonce}/>,

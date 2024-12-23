@@ -19,6 +19,7 @@ import Link from 'next/link';
 import LaunchIcon from '@mui/icons-material/Launch';
 import SearchIcon from '@public/icons/ui/search.svg';
 import { BG_COLORS } from '@/styles';
+import Web3 from 'web3';
 
 const getTableData = (poolStakers: Stakers) => {
   return Object.entries(poolStakers).map(
@@ -107,13 +108,13 @@ export const StakersTable: FC<StakersTableProps> = ({
                   </Link>
                 </TableCell>
                 <TableCell sx={{ width: '25%' }}>
-                  <Typography sx={{ fontSize: '16px' }}>{st.kly}</Typography>
+                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.kly,'ether')}</Typography>
                 </TableCell>
                 <TableCell sx={{ width: '25%' }}>
-                  <Typography sx={{ fontSize: '16px' }}>{st.uno}</Typography>
+                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.uno,'ether')}</Typography>
                 </TableCell>
                 <TableCell sx={{ width: '25%' }}>
-                  <Typography sx={{ fontSize: '16px' }}>{st.reward}</Typography>
+                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.reward,'ether')}</Typography>
                 </TableCell>
               </TableRow>
             ))}

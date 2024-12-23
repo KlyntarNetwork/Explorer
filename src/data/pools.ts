@@ -9,8 +9,7 @@ export async function fetchPoolById(poolId: string): Promise<Pool> {
     return {
       ...poolData,
       poolStorage: {
-        ...poolData.poolStorage,
-        percentage: poolData.poolStorage.percentage * 100
+        ...poolData.poolStorage
       }
     }
   } catch (e: any) {

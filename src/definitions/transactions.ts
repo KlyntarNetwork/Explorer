@@ -12,7 +12,7 @@ export interface Transaction {
   creator: string;
   type: string;
   nonce: number;
-  fee: number;
+  fee: string;
   payload: any;
   sigType: string;
   sig: string;
@@ -46,6 +46,6 @@ export interface TransactionPreview {
   txid: string;
   txType: string;
   sigType: string;
-  fee: number;
+  fee: string;
   creator?: string;
 }

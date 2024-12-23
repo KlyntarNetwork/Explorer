@@ -2,7 +2,7 @@ export interface BlockStats {
   totalBlocksNumber: number;
   totalTxsNumber: number;
   successfulTxsNumber: number;
-  totalKlyStaked: number;
+  totalKlyStaked: 'string';
 }
 
 export interface RecentBlockStats {

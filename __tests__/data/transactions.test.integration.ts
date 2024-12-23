@@ -12,7 +12,7 @@ describe('fetchTransactionByTxHash Integration Test', () => {
     expect(typeof result.creator).toBe('string');
     expect(typeof result.type).toBe('string');
     expect(typeof result.nonce).toBe('number');
-    expect(typeof result.fee).toBe('number');
+    expect(typeof result.fee).toBe('string');
     expect(typeof result.sig).toBe('string');
 
     expect(typeof result.blockID).toBe('string');
@@ -42,7 +42,7 @@ describe('fetchAccountTransactions Integration Test', () => {
       expect(typeof tx.txid).toBe('string');
       expect(typeof tx.txType).toBe('string');
       expect(typeof tx.sigType).toBe('string');
-      expect(typeof tx.fee).toBe('number');
+      expect(typeof tx.fee).toBe('string');
     });
   });
 });

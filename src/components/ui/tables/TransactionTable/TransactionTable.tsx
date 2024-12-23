@@ -19,6 +19,7 @@ import {
 import { BG_COLORS } from '@/styles';
 import LaunchIcon from '@mui/icons-material/Launch';
 import SearchIcon from '@public/icons/ui/search.svg';
+import Web3 from 'web3';
 
 interface Props {
   transactions: TransactionPreview[]
@@ -115,7 +116,7 @@ export const TransactionsTable: FC<Props> = ({
                   <Typography sx={{ fontSize: '16px' }}>{tx.sigType}</Typography>
                 </TxTableCell>
                 <TxTableCell>
-                  <Typography sx={{ fontSize: '16px' }}>{tx.fee}</Typography>
+                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(tx.fee,'ether')}</Typography>
                 </TxTableCell>
               </TableRow>
             ))}

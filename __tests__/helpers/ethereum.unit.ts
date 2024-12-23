@@ -15,7 +15,7 @@ describe('parseEvmTransaction', () => {
       creator: '0x069bdf66961ce2d38ebe48dd2e095f2c8015ac82',
       type: TX_TYPE.EVM_CALL,
       nonce: 0,
-      fee: 230000000000000,
+      fee: '230000000000000',
       payload: {
         to: '0x407d73d8a49eeb85d32cf465507dd71d507100c1',
         value: '1.337',

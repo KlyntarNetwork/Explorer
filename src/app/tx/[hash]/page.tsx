@@ -5,6 +5,7 @@ import { ContentBlock, EntityPageLayout, Label, PageContainer } from '@/componen
 import { describeTransactionCreatorFormat, fetchAccountById, fetchTransactionByTxHash } from '@/data';
 import { truncateMiddle } from '@/helpers';
 import { TX_TYPE } from '@/definitions';
+import Web3 from 'web3';
 
 interface Props {
   params: {
@@ -109,7 +110,7 @@ export default async function TransactionByIdPage({ params }: Props) {
             <ContentBlock
               key='version'
               title='Coins transferred:'
-              value={(tx.payload.amount || tx.payload.value || 0) + ' KLY'}
+              value={Web3.utils.fromWei(tx.payload.amount || tx.payload.value || '0', 'ether') + ' KLY'}
             />,
             <ContentBlock
               key='nonce'

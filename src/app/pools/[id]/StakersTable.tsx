@@ -23,11 +23,10 @@ import Web3 from 'web3';
 
 const getTableData = (poolStakers: Stakers) => {
   return Object.entries(poolStakers).map(
-    ([id, { kly, uno, reward }]) => ({
+    ([id, { kly, uno }]) => ({
       id,
       kly,
-      uno,
-      reward
+      uno
     })
   );
 }
@@ -89,13 +88,12 @@ export const StakersTable: FC<StakersTableProps> = ({
               <TableCell><Typography variant='h6'>ID</Typography></TableCell>
               <TableCell><Typography variant='h6'>KLY</Typography></TableCell>
               <TableCell><Typography variant='h6'>UNO</Typography></TableCell>
-              <TableCell><Typography variant='h6'>Reward</Typography></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {filteredStakers.map((st) => (
               <TableRow key={st.id}>
-                <TableCell sx={{ width: '25%' }}>
+                <TableCell sx={{ width: '33%' }}>
                   <Link
                     href={`/users/${poolOriginShard}:${st.id}`}
                     passHref
@@ -107,14 +105,11 @@ export const StakersTable: FC<StakersTableProps> = ({
                     </Typography>
                   </Link>
                 </TableCell>
-                <TableCell sx={{ width: '25%' }}>
+                <TableCell sx={{ width: '33%' }}>
                   <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.kly,'ether')}</Typography>
                 </TableCell>
-                <TableCell sx={{ width: '25%' }}>
+                <TableCell sx={{ width: '33%' }}>
                   <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.uno,'ether')}</Typography>
-                </TableCell>
-                <TableCell sx={{ width: '25%' }}>
-                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.reward,'ether')}</Typography>
                 </TableCell>
               </TableRow>
             ))}

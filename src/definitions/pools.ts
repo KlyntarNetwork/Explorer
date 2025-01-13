@@ -27,6 +27,5 @@ export interface Stakers {
   [key: string]: {
     kly: string;
     uno: string;
-    reward: string;
   }
 }

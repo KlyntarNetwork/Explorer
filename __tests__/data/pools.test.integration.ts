@@ -32,8 +32,7 @@ describe('fetchPoolById Integration Test', () => {
     Object.keys(stakers).forEach(stakerKey => {
       const staker = stakers[stakerKey];
       expect(typeof staker.kly).toBe('string');
-      expect(typeof staker.uno).toBe('string');
-      expect(typeof staker.reward).toBe('string');
+      expect(typeof staker.uno).toBe('string')
     });
   });
 });

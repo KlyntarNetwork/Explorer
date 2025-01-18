@@ -70,7 +70,7 @@ export const DesktopNetworksList: FC<{ sx?: SxProps }> = ({ sx }) => {
         }}
       >
         <Indicator />
-        <KlyntarIconSm />
+        Switch network
       </Button>
 
       <Menu

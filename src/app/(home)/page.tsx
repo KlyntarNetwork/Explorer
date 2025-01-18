@@ -21,7 +21,7 @@ export default async function HomePage() {
     <>
       <BlockchainInfoSearchBar data={blockchainData} />
       <KeyWordsTicker />
-      <PageContainer sx={{ pt: 14, pb: 20 }}>
+      <PageContainer sx={{ pt: 10, pb: 5 }}>
         <Grid container spacing={5}>
           <Grid item xs={12} lg={6}>
             <NetworkParameters data={blockchainData} />

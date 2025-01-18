@@ -8,7 +8,6 @@ import { logUserAction } from '@/helpers';
 import { LOCATION, USER_ACTIONS } from '@/constants';
 import { BG_COLORS, COLORS } from '@/styles';
 import { KLY_LINKS } from '@/config';
-import KlyntarIconSm from '@public/icons/company/KlyntarIconSm.svg';
 
 const networks = [
   {

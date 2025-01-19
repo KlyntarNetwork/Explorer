@@ -9,8 +9,8 @@ import Facebook from '@public/icons/social/Facebook.svg';
 export enum KLY_LINKS {
   EXPLORER_TESTNET = 'https://testnet.klyntarscan.org',
   EXPLORER_MAINNET = 'https://klyntarscan.org',
-  WEBSITE = 'https://www.klyntar.org',
-  TESTNET_FAUCET = 'https://www.klyntar.org/testnet-faucet',
+  WEBSITE = 'https://klyntar.org',
+  TESTNET_FAUCET = 'https://klyntar.org/testnet-faucet',
   GITHUB = 'https://github.com/KlyntarNetwork',
   TWITTER = 'https://twitter.com/KlyntarNetwork',
   TELEGRAM = 'https://t.me/KlyntarNetwork',

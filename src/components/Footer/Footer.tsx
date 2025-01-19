@@ -1,15 +1,15 @@
 import { FC } from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import Link from 'next/link';
-import { FlexCenterBox } from '@/components/ui';
+import { FlexCenterBox, PageContainer } from '@/components/ui';
 import { COLORS } from '@/styles';
 import { KLY_LINKS } from '@/config';
 
 export const Footer = () => {
   return (
-    <Container sx={{ pb: 5, pt: 20 }} maxWidth='xl'>
+    <PageContainer sx={{ pb: 5, pt: 20}} >
       <Grid container spacing={{ lg: 2, xs: 5 }}>
-        <Grid item xs={12} lg={5.4}>
+        <Grid item xs={12} lg={5.4} >
           <Box>
             <FlexCenterBox sx={{
               gap: 0.5,
@@ -28,31 +28,31 @@ export const Footer = () => {
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={2.2}>
-          <Box>
+          <Box sx={{ pl: {xl:15,sm:10} }}>
             <Typography variant='h2' sx={{ mb: 2 }}>FAQ</Typography>
-            <FooterLink title="How to run a validator" url={KLY_LINKS.HOW_TO_RUN_A_VALIDATOR} />
+            <FooterLink title="Run a validator" url={KLY_LINKS.HOW_TO_RUN_A_VALIDATOR} />
+            <FooterLink title="Staking" url={KLY_LINKS.STAKING} />
             <FooterLink title="Multistaking" url={KLY_LINKS.MULTISTAKING} />
-            <FooterLink title="Unstaking" url={KLY_LINKS.UNSTAKING} />
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={2.2}>
-          <Box>
+          <Box sx={{ pl: {xl:15,sm:10} }}>
             <Typography variant='h2' sx={{ mb: 2 }}>Sites</Typography>
-            <FooterLink title="Main Site" url={KLY_LINKS.WEBSITE} />
+            <FooterLink title="Site" url={KLY_LINKS.WEBSITE} />
             <FooterLink title="GitHub" url={KLY_LINKS.GITHUB} />
             <FooterLink title="CoinMarketCap" url={KLY_LINKS.CMC} />
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={2.2}>
-          <Box>
-            <Typography variant='h2' sx={{ mb: 2 }}>Ecosystem</Typography>
+          <Box sx={{ pl: {xl:15,sm:10} }}>
+            <Typography variant='h2' sx={{ mb: 2}}>Ecosystem</Typography>
             <FooterLink title="Tokens" url={KLY_LINKS.TOKENS} />
-            <FooterLink title="RWX Contracts" url={KLY_LINKS.RWX_CONTRACTS} />
-            <FooterLink title="Testnet Faucet" url={KLY_LINKS.TESTNET_FAUCET} />
+            <FooterLink title="RWX contracts" url={KLY_LINKS.RWX_CONTRACTS} />
+            <FooterLink title="Faucet" url={KLY_LINKS.TESTNET_FAUCET} />
           </Box>
         </Grid>
       </Grid>
-    </Container>
+      </PageContainer>
   );
 }
 
@@ -68,7 +68,7 @@ const FooterLink: FC<{
         textUnderlineOffset: '3px',
         textDecorationThickness: '1px',
         lineHeight: '33px',
-        display: 'block'
+        display: 'block',
       }}
     >
       <Link

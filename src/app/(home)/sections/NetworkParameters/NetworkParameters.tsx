@@ -9,7 +9,7 @@ interface Props {
 
 export const NetworkParameters:FC<Props> = async ({ data }) => {
   return (
-    <RedGradientBackground sx={{ p: 3, pb: 13 }}>
+    <RedGradientBackground sx={{ p: 3, pb: {xl:13,sm:10} }}>
       <Typography variant='h1'>
         Network Parameters
       </Typography>

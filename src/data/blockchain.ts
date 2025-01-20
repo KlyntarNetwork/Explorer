@@ -6,6 +6,30 @@ import { fetchCurrentEpoch } from '@/data/epochs';
 import { getInfoFromEpoch, getTxSuccessRate } from './utils';
 
 export async function fetchBlockchainData(): Promise<BlockchainData> {
+
+  const defaultData: BlockchainData = {
+    epochId: 0,
+    shardsNumber: 0,
+    validatorsNumber: 0,
+    totalTxsNumber: 'N/A',
+    txsSuccessRate: 'N/A',
+    totalBlocksNumber: 'N/A',
+    totalBlocksNumberInCurrentEpoch: 'N/A',
+    slotTimeInSeconds: 0,
+    totalStaked: 'N/A',
+    chainInfo: {
+      networkId: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      validatorStakeSize: 'N/A',
+      coreMajorVersion: 0,
+      quorumSize: 'N/A',
+      minimalStakePerEntity: 0,
+      epochDuration: 'N/A',
+      leaderTimeframe: 'N/A',
+      slotTime: 'N/A',
+      maxBlockSize: 'N/A',
+    }
+  }
+
   try {
     const verificationThreadStats = await api.get<BlockStats>(API_ROUTES.STATS.VERIFICATION_THREAD_STATS);
     const epochMetadata = await fetchCurrentEpoch();
@@ -43,7 +67,7 @@ export async function fetchBlockchainData(): Promise<BlockchainData> {
       }
     };
   } catch (e: any) {
-    throw new Error(`Failed to fetch blockchain data - ${e.message}`);
+    return defaultData;
   }
 }
 

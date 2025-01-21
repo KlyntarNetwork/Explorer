@@ -21,13 +21,17 @@ export async function fetchBlockchainData(): Promise<BlockchainData> {
       networkId: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       validatorStakeSize: 'N/A',
       coreMajorVersion: 0,
-      quorumSize: 'N/A',
+      quorumSize: 'N/A validators',
       minimalStakePerEntity: 0,
-      epochDuration: 'N/A',
-      leaderTimeframe: 'N/A',
-      slotTime: 'N/A',
-      maxBlockSize: 'N/A',
+      epochDuration: 'N/A hours',
+      leaderTimeframe: 'N/A seconds',
+      slotTime: 'N/A seconds',
+      maxBlockSize: 'N/A Mb',
     }
+  }
+
+  if(process.env.STUB_MODE){
+    return defaultData;
   }
 
   try {
@@ -62,12 +66,12 @@ export async function fetchBlockchainData(): Promise<BlockchainData> {
         minimalStakePerEntity: chainData.approvementThread.params.MINIMAL_STAKE_PER_ENTITY,
         epochDuration: chainData.approvementThread.params.EPOCH_TIME / 3600000 + ' hours',
         leaderTimeframe: chainData.approvementThread.params.LEADERSHIP_TIMEFRAME / 1000 + ' seconds',
-        slotTime: chainData.approvementThread.params.BLOCK_TIME / 1000 + ' second',
+        slotTime: chainData.approvementThread.params.BLOCK_TIME / 1000 + ' seconds',
         maxBlockSize: (chainData.approvementThread.params.MAX_BLOCK_SIZE_IN_BYTES / 1000000).toFixed(2) + 'Mb'
       }
     };
   } catch (e: any) {
-    return defaultData;
+    throw new Error(`Failed to fetch blockchain data - ${e.message}`);
   }
 }
 

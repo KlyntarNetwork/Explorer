@@ -10,7 +10,7 @@ export const ValidatorsQuorumSection: FC<{ epoch: Epoch }> = ({
   epoch
 }) => {
 
-  const quorum = epoch.poolsRegistry.map(validator => ({
+  const validatorsData = epoch.leadersSequence.map(validator => ({
     text: validator,
     url: `/pools/${validator}(POOL)`,
     inQuorum: epoch.quorum.includes(validator)
@@ -22,8 +22,8 @@ export const ValidatorsQuorumSection: FC<{ epoch: Epoch }> = ({
       <Typography sx={{ mt: 1, mb: 3 }}>List of pools that were ready to protect the decentralization of network</Typography>
 
       <Box sx={{ mt: 4 }}>
-        {quorum.length ? (
-          <VadlidatorsTable value={quorum} />
+        {validatorsData.length ? (
+          <VadlidatorsTable value={validatorsData} />
         ) : (
           <Typography color='primary.main'>No validators found</Typography>
         )}

@@ -10,12 +10,12 @@ export const API_ROUTES = {
   },
   CHAIN: {
     INFO: 'chain_info',
-    CURRENT_SHARDS_LEADERS: 'current_shards_leaders',
+    CURRENT_SHARDS_LEADERS: 'current_leader',
     SYNCHRONIZATION_STATS: 'synchronization_stats',
   },
   BLOCKS: {
-    LATEST_N_BLOCKS: (shard: string, startIndex: number, limit: number) => `latest_n_blocks/${shard}/${startIndex}/${limit}`,
-    BLOCK_BY_SID: (shard: string, indexInShard: string) => `block_by_sid/${shard}/${indexInShard}`,
+    LATEST_N_BLOCKS: (shard: string, startIndex: number, limit: number) => `latest_n_blocks/${startIndex}/${limit}`,
+    BLOCK_BY_SID: (shard: string, indexInShard: string) => `block_by_sid/${indexInShard}`,
     BLOCK_BY_ID: (blockId: string) => `block/${blockId}`,
     AGGREGATED_FINALIZATION_PROOF: (blockId: string) => `aggregated_finalization_proof/${blockId}`,
   },
@@ -24,9 +24,9 @@ export const API_ROUTES = {
   },
   TRANSACTIONS: {
     TX_RECEIPT: (txHash: string) => `tx_receipt/${txHash}`,
-    ACCOUNT_TRANSACTIONS: (shard: string, accountId: string) => `txs_list/${shard}/${accountId}`
+    ACCOUNT_TRANSACTIONS: (shard: string, accountId: string) => `txs_list/${accountId}`
   },
   ACCOUNTS: {
-    ACCOUNT_BY_ID: (shard: string, accountId: string) => `account/${shard}/${accountId}`
+    ACCOUNT_BY_ID: (shard: string, accountId: string) => `account/${accountId}`
   }
 };

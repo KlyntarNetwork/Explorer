@@ -13,12 +13,8 @@ const commonEpochAssertions = (result: Epoch) => {
 
   expect(typeof result.startTimestamp).toBe('number');
   expect(Array.isArray(result.quorum)).toBeTruthy();
-  expect(typeof result.leadersSequence).toBe('object');
+  expect(typeof result.leadersSequence).toBe('array');
 
-  Object.keys(result.leadersSequence).forEach(shard => {
-    expect(Array.isArray(result.leadersSequence[shard])).toBeTruthy();
-    result.leadersSequence[shard].forEach(val => expect(typeof val).toBe('string'));
-  })
 }
 
 describe('fetchEpochById Integration Test', () => {

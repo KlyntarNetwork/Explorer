@@ -38,7 +38,7 @@ export const LatestBlocksTable: FC<LatestBlocksTableProps> = async ({
           style={{ textDecoration: 'none' }}
         >
           <Typography color='primary.main' sx={{ fontSize: '16px' }}>
-            <LaunchIcon color='primary' sx={{ position: 'relative', bottom: '-4px', height: '20px' }} /> {truncateMiddle(block.sid)}
+            <LaunchIcon color='primary' sx={{ position: 'relative', bottom: '-4px', height: '20px' }} /> {block.sid}
           </Typography>
         </Link>
       </TableCell>

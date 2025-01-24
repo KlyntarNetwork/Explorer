@@ -2,10 +2,10 @@ import { fetchAggregatedFinalizationProof, fetchBlockById, fetchBlocksByShard } 
 import { AggregatedFinalizationProof, BlockExtendedView } from '@/definitions';
 
 describe('fetchBlocksByShard Integration Test', () => {
-  it('should fetch and return an array of block previews by shard correctly', async () => {
+  it('should fetch and return an array of block previews correctly', async () => {
     const shard = 'shard_0';
     const currentPage = 1;
-    const result = await fetchBlocksByShard(shard, currentPage);
+    const result = await fetchBlocksByShard(shard,currentPage);
 
     expect(Array.isArray(result)).toBeTruthy();
 

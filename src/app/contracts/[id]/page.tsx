@@ -21,9 +21,10 @@ interface Props {
 export default async function ContractByIdPage({ params }: Props) {
   const decodedComponent = decodeURIComponent(params.id)
 
-  let shardId, contractId;
+  let systemContractUI, shardId, contractId;
 
   if(!decodedComponent.includes(':')){
+    systemContractUI = true;
     shardId = 'x';
     contractId = decodedComponent;
   } else {
@@ -69,14 +70,17 @@ export default async function ContractByIdPage({ params }: Props) {
               value={contract.gas}
             />
           ],
-          <ContentBlock key='list_of_storage_cells' title='List of storage cells:'>
+          <ContentBlock key='language' title='Language:'>
+            <Label variant={getColorForLanguage(contract.lang)}>{contract.lang}</Label>
+          </ContentBlock>,
+          ( !systemContractUI && 
+
+            <ContentBlock key='list_of_storage_cells' title='List of storage cells:'>
             {contract.storages.map(storage =>
               <Typography key={storage} color='primary.main'>• {storage}</Typography>
             )}
-          </ContentBlock>,
-          <ContentBlock key='language' title='Language:'>
-            <Label variant={getColorForLanguage(contract.lang)}>{contract.lang}</Label>
-          </ContentBlock>
+          </ContentBlock>)
+          
         ]}
       >
         <ContractImage width={421} height={426} viewBox='0 0 421 426' />

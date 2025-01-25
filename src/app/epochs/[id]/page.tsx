@@ -42,7 +42,7 @@ export default async function PoolByIdPage({ params }: Props) {
           disabled={epoch.isCurrent}
         />
       </FlexBetweenBox>
-      <Typography variant='h1'>{epoch.isCurrent ? `Current ` : ''}Epoch Data</Typography>
+      <Typography variant='h1'>{epoch.isCurrent ? `Current epoch` : `Epoch`} data</Typography>
       <Grid container spacing={1} sx={{ mt: 2 }}>
         <Grid item xs={12}>
           <InfoBlock

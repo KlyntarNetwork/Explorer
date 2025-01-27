@@ -42,7 +42,8 @@ describe('fetchAccountTransactions Integration Test', () => {
       expect(typeof tx.txid).toBe('string');
       expect(typeof tx.txType).toBe('string');
       expect(typeof tx.sigType).toBe('string');
-      expect(typeof tx.fee).toBe('string');
+      expect(typeof tx.proposedFee).toBe('string');
+      expect(typeof tx.realFee).toBe('string');
     });
   });
 });

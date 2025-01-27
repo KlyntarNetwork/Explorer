@@ -46,6 +46,7 @@ export interface TransactionPreview {
   txid: string;
   txType: string;
   sigType: string;
-  fee: string;
+  proposedFee: string;
+  realFee: string;
   creator?: string;
 }

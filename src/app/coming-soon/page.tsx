@@ -24,10 +24,10 @@ const ComingSoonPage = () => {
       }}
     >
       <Typography variant='h6' sx={{ mb: 4 }}>
-        Page Coming Soon
+        Page coming soon
       </Typography>
       <Button variant='contained' onClick={handleGoBack}>
-        Go Back
+        Go back
       </Button>
     </Box>
   );

@@ -87,6 +87,7 @@ export const TransactionsTable: FC<Props> = ({
               <TableCell><Typography variant='h6'>TxType</Typography></TableCell>
               <TableCell><Typography variant='h6'>SigType</Typography></TableCell>
               <TableCell><Typography variant='h6'>Proposed fee</Typography></TableCell>
+              <TableCell><Typography variant='h6'>Real fee</Typography></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -116,7 +117,10 @@ export const TransactionsTable: FC<Props> = ({
                   <Typography sx={{ fontSize: '16px' }}>{tx.sigType}</Typography>
                 </TxTableCell>
                 <TxTableCell>
-                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(tx.fee,'ether')}</Typography>
+                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(tx.proposedFee,'ether')}</Typography>
+                </TxTableCell>
+                <TxTableCell>
+                  <Typography sx={{ fontSize: '16px' }}>{ tx.realFee === 'N/A' ? 'N/A' : Web3.utils.fromWei(tx.realFee,'ether')}</Typography>
                 </TxTableCell>
               </TableRow>
             ))}

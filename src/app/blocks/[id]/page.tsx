@@ -25,7 +25,8 @@ export default async function BlockByIdPage({ params }: Props) {
     txid: tx.txHash,
     txType: tx.type,
     sigType: tx.sigType,
-    fee: tx.fee,
+    proposedFee: tx.fee,
+    realFee: 'N/A',
     creator: tx.creator
   }));
 

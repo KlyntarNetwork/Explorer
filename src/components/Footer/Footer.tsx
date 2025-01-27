@@ -18,7 +18,7 @@ export const Footer = () => {
               <Typography variant='h2'>Built with 🤍</Typography>
             </FlexCenterBox>
             <Typography color="text.secondary" sx={{ mt: 2 }}>
-              We stand for decentralization, open-source development and community interests.
+              We stand for decentralization, open-source development and community interests
             </Typography>
             <Typography sx={{ mt: 4.5 }}>
               Contact us: <Link href='mailto:hello@klyntar.org' style={{

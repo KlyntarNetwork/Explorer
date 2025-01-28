@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { ContentBlock, EntityPageLayout, PageContainer } from '@/components/ui';
 import { Box, Typography } from '@mui/material';
 import { fetchPoolById } from '@/data';
-import { formatNumber, truncateMiddle } from '@/helpers';
+import { truncateMiddle } from '@/helpers';
 import { StakersTable } from './StakersTable';
 import PoolImage from '@public/icons/pages/pool.svg';
 import Web3 from 'web3';

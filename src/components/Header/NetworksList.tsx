@@ -20,6 +20,11 @@ const networks = [
     base: 'testnet',
     label: 'Klyntar Testnet',
   },
+  {
+    url: KLY_LINKS.EXPLORER_DEVNET,
+    base: 'devnet',
+    label: 'Klyntar Devnet',
+  },
 ];
 
 const isCurrentNetwork = (network: string) => {

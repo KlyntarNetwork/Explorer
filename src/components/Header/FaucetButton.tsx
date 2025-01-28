@@ -39,8 +39,6 @@ export const FaucetButton: FC<{
           textDecorationThickness: 'inherit',
         }}
       >
-        <FaucetIcon width={18}/>
-        &nbsp;
         Testnet Faucet
       </Link>
     </Typography>

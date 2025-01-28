@@ -34,6 +34,8 @@ export interface TransactionReceipt {
   reason?: string;
   createdContractAddress?: string;
   extraDataToReceipt?: string;
+  priorityFee: string
+  totalFee: string
 }
 
 export interface TransactionExtendedView extends TransactionReceipt, TransactionWithTxHash {
@@ -46,7 +48,7 @@ export interface TransactionPreview {
   txid: string;
   txType: string;
   sigType: string;
-  proposedFee: string;
-  realFee: string;
+  priorityFee: string;
+  totalFee: string;
   creator?: string;
 }

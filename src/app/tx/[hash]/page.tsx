@@ -137,6 +137,10 @@ export default async function TransactionByIdPage({ params }: Props) {
             </ContentBlock>
           ],
           [
+            <ContentBlock key='proposed_fee' title='Priority fee:' value={Web3.utils.fromWei(tx.priorityFee,'ether')}/>,
+            <ContentBlock key='real_fee' title='Total charged fee:' value={Web3.utils.fromWei(tx.totalFee,'ether')}/>
+          ],
+          [
             <ContentBlock
               key='included_in_block'
               title='Included in block:'

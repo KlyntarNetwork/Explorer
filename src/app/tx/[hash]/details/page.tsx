@@ -26,14 +26,15 @@ export default async function RawTransactionWithDetailsPage({ params }: RawTrans
       blockID: tx.blockID,
       order: tx.order,
       createdContractAddress: tx.createdContractAddress,
-      extraDataToReceipt:
-      tx.extraDataToReceipt
+      extraDataToReceipt: tx.extraDataToReceipt,
+      priorityFee: tx.priorityFee,
+      totalFee: tx.totalFee
     },
     txData:{
       version: tx.v,
+      shard: tx.shard,
       txid: tx.txHash,
       txType: tx.type,
-      shard: tx.shard,
       creator: tx.creator,
       fee: tx.fee,
       nonce: tx.nonce,

@@ -60,19 +60,25 @@ export const Header = () => {
           <OutlinedButton
             icon={<Close />}
             onClick={() => setIsOpen(false)}
-            sx={{ display: { md: 'none' } }}
+            sx={{ display: { '@media (min-width: 952px)': {
+                display: 'none',
+              }, } }}
           />
         ) : (
           <OutlinedButton
             icon={<MenuIcon />}
             onClick={() => setIsOpen(true)}
-            sx={{ display: { md: 'none' } }}
+            sx={{ display: { '@media (min-width: 952px)': {
+                display: 'none',
+              }, } }}
           />
         )}
         <Box
           sx={{
             display: {
-              display: 'none',
+              '@media (max-width: 952px)': {
+                display: 'none',
+              },
               md: 'flex',
               gap: 30,
               alignItems: 'center'
@@ -87,7 +93,9 @@ export const Header = () => {
         in={isOpen}
         timeout='auto'
         unmountOnExit
-        sx={{ display: { md: 'none' } }}
+        sx={{ display: { '@media (min-width: 952px)': {
+                display: 'none',
+              },} }}
       >
         <List
           sx={{ width: '100%', borderBottom: 1 }}

@@ -32,7 +32,7 @@ const isCurrentNetwork = (network: string) => {
     const isTestnet = window.location.hostname.includes('testnet');
     const isDevnet = window.location.hostname.includes('devnet');
     return (
-      (network === 'testnet' && isTestnet) || (network === 'devnet' && isDevnet) || (network === 'mainnet' && !isTestnet)
+      (network === 'testnet' && isTestnet) || (network === 'devnet' && isDevnet) || network === 'mainnet' && (!isDevnet && !isTestnet)
     );
   }
 

@@ -1,0 +1,1 @@
+export { SocialMediaLabel } from './SocialMediaLabel';

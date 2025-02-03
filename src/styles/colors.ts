@@ -4,7 +4,8 @@ export enum COLORS {
   GREEN = '#7AFF73',
   ORANGE = '#fb923c',
   SILVER = '#e0dfdf',
-  TEXT_PRIMARY = '#fefefe'
+  TEXT_PRIMARY = '#fefefe',
+  VIOLET = '#738ADB',
 }
 
 export enum BG_COLORS {

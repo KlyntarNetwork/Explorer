@@ -137,8 +137,8 @@ export default async function TransactionByIdPage({ params }: Props) {
             </ContentBlock>
           ],
           [
-            <ContentBlock key='proposed_fee' title='Priority fee:' value={Web3.utils.fromWei(tx.priorityFee,'ether')}/>,
-            <ContentBlock key='real_fee' title='Total charged fee:' value={Web3.utils.fromWei(tx.totalFee,'ether')}/>
+            <ContentBlock key='proposed_fee' title='Priority fee:' value={ tx.priorityFee ? Web3.utils.fromWei(tx.priorityFee,'ether') : '0'}/>,
+            <ContentBlock key='real_fee' title='Total charged fee:' value={tx.totalFee ? Web3.utils.fromWei(tx.totalFee,'ether') : '0'}/>
           ],
           [
             <ContentBlock

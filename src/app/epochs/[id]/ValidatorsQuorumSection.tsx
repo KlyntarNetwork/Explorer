@@ -10,7 +10,29 @@ export const ValidatorsQuorumSection: FC<{ epoch: Epoch }> = ({
   epoch
 }) => {
 
-  const validatorsData = epoch.leadersSequence.map(validator => ({
+  let validatorsSequence;
+
+  if(process.env.MODE_1){
+
+    // In case it's MODE_1 - list the pools registry to show quorum members first
+
+    const quorum = new Set(epoch.quorum);
+
+    validatorsSequence = epoch.poolsRegistry.sort((a, b) => {
+      
+      return quorum.has(a) && !quorum.has(b) ? -1 : !quorum.has(a) && quorum.has(b) ? 1 : 0;
+    
+    });
+
+  } else {
+
+    // Otherwise visualize in sequence of leadership
+
+    validatorsSequence = epoch.leadersSequence
+
+  }
+
+  const validatorsData = validatorsSequence.map(validator => ({
     text: validator,
     url: `/pools/${validator}(POOL)`,
     inQuorum: epoch.quorum.includes(validator)

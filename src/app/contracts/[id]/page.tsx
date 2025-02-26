@@ -54,8 +54,8 @@ export default async function ContractByIdPage({ params }: Props) {
           <ContentBlock key='aliases' title='Also known as:'>
             <Label variant='blue'>N/A</Label>
           </ContentBlock>,
-          <ContentBlock key='shard' title='Shard:' value={shardId}/>,
           [
+            <ContentBlock key='shard' title='Shard:' value={shardId}/>,
             <ContentBlock key='balance' title='Balance:' value={ Web3.utils.fromWei(contract.balance,'ether') + ' KLY'}/>,
           ],
           [

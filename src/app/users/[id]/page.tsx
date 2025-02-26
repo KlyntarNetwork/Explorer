@@ -44,9 +44,9 @@ export default async function AccountByIdPage({ params }: Props) {
           <ContentBlock key='aliases' title='Also known as:'>
             <Label variant='blue'>N/A</Label>
           </ContentBlock>,
-          <ContentBlock key='shard' title='Shard:' value={shard}/>,
           [
-            <ContentBlock key='balance' title='Balance:' value={Web3.utils.fromWei(account.balance,'ether') + ' KLY'}/>,
+            <ContentBlock key='shard' title='Shard:' value={shard}/>,
+            <ContentBlock key='balance' title='Balance:' value={Web3.utils.fromWei(account.balance,'ether') + ' KLY'}/>
           ],
           [
             <ContentBlock key='nonce' title='Nonce:' value={account.nonce}/>,

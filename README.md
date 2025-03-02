@@ -1,3 +1,6 @@
+
+![cover](./ExplorerIntroCard.svg)
+
 # KLYNTAR blockchain explorer
 
 `npm i`

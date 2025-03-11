@@ -51,8 +51,10 @@ const ContentLink: FC<{ title: string, url: string, disabled?: boolean }> = ({
     <Typography
       color={disabled ? 'text.secondary' : 'text.primary'}
       sx={{
+        textDecoration: 'underline',
+        textUnderlineOffset: '5px',
         textDecorationThickness: '1px',
-        textDecorationColor: disabled ? '#11111166' : 'auto',
+        textDecorationColor: disabled ? '#ffffff' : 'auto',
         fontSize: '18px',
         lineHeight: '33px',
         display: 'block',

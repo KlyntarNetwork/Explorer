@@ -16,6 +16,7 @@ export const BlockchainInfoSearchBar: FC<Props> = async ({ data }) => {
         <PageContainer>
           <ExplorerSearchBar />
           <Grid container spacing={1} sx={{ mt: 4 }}>
+            <HomeInfoBlock title='Coin Price' value='SOON' />
             <HomeInfoBlock title='Total TXS' value={data.totalTxsNumber} variant='red'/>
             <HomeInfoBlock title='Epoch ID' value={data.epochId} variant='red'/>
             <HomeInfoBlock title='TXS Success' value={data.txsSuccessRate} variant='red'/>
@@ -23,7 +24,6 @@ export const BlockchainInfoSearchBar: FC<Props> = async ({ data }) => {
             <HomeInfoBlock title='Validators' value={data.validatorsNumber} variant='red'/>
             <HomeInfoBlock title='Total Staked' value={data.totalStaked} variant='red'/>
             <HomeInfoBlock title='Market Cap' value='SOON' />
-            <HomeInfoBlock title='Coin Price' value='SOON' />
           </Grid>
         </PageContainer>
       </GradientBackground>

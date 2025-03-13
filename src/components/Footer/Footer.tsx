@@ -22,7 +22,9 @@ export const Footer = () => {
             </Typography>
             <Typography sx={{ mt: 4.5 }}>
               Contact us: <Link href='mailto:hello@klyntar.org' style={{
-                color: COLORS.SILVER
+                color: COLORS.SILVER,
+                textDecoration: 'none',
+                fontWeight: 'bold'
               }}>hello@klyntar.org</Link>
             </Typography>
           </Box>
@@ -64,11 +66,15 @@ const FooterLink: FC<{
     <Typography
       color='text.primary'
       sx={{
-        textDecoration: 'underline',
-        textUnderlineOffset: '3px',
-        textDecorationThickness: '1px',
+        textDecoration: 'none', // Убираем подчеркивание по умолчанию
         lineHeight: '33px',
         display: 'block',
+        transition: 'text-decoration-thickness 0.2s ease, text-underline-offset 0.2s ease',
+        '&:hover': {
+          textDecoration: 'underline',
+          textDecorationThickness: '3px',
+          textUnderlineOffset: '10px',
+        }
       }}
     >
       <Link
@@ -76,7 +82,7 @@ const FooterLink: FC<{
         passHref
         style={{
           color: 'inherit',
-          textDecorationThickness: 'inherit'
+          textDecoration: 'inherit' // Наследуем стиль у родителя
         }}
       >
         {title}

@@ -51,13 +51,21 @@ const ContentLink: FC<{ title: string, url: string, disabled?: boolean }> = ({
     <Typography
       color={disabled ? 'text.secondary' : 'text.primary'}
       sx={{
-        textDecoration: 'underline',
+
+        textDecoration: 'none',
+        lineHeight: '33px',
+        display: 'block',
+        transition: 'text-decoration-thickness 0.2s ease, text-underline-offset 0.2s ease',
+        '&:hover': {
+          textDecoration: 'underline',
+          textDecorationThickness: '3px',
+          textUnderlineOffset: '10px',
+        },
+
         textUnderlineOffset: '5px',
         textDecorationThickness: '1px',
         textDecorationColor: disabled ? '#ffffff' : 'auto',
         fontSize: '18px',
-        lineHeight: '33px',
-        display: 'block',
         my: 1.25
       }}
       onClick={() => logUserAction(USER_ACTIONS.VISIT_PAGE, { url, location: LOCATION.HOME_PAGE })}

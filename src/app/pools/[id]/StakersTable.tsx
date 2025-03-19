@@ -14,6 +14,7 @@ import {
   TableRow,
   Box,
   TextField,
+  Tooltip
 } from '@mui/material';
 import Link from 'next/link';
 import LaunchIcon from '@mui/icons-material/Launch';
@@ -85,9 +86,12 @@ export const StakersTable: FC<StakersTableProps> = ({
         <Table sx={{ minWidth: 650 }} aria-label='Stakers table'>
           <TableHead>
             <TableRow>
-              <TableCell><Typography variant='h6'>ID</Typography></TableCell>
-              <TableCell><Typography variant='h6'>KLY</Typography></TableCell>
-              <TableCell><Typography variant='h6'>UNO</Typography></TableCell>
+              
+              <TableCell>
+                <Tooltip title='Address of staker'><Typography variant='h6'>ID</Typography></Tooltip>
+                </TableCell>
+              <TableCell><Tooltip title='Amount of staked native coins'><Typography variant='h6'>KLY</Typography></Tooltip></TableCell>
+              <TableCell><Tooltip title='Address of staked multistaking points'><Typography variant='h6'>UNO</Typography></Tooltip></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

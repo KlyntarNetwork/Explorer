@@ -15,6 +15,7 @@ import {
   TableRow,
   Box,
   TextField,
+  Tooltip,
 } from '@mui/material';
 import { BG_COLORS } from '@/styles';
 import LaunchIcon from '@mui/icons-material/Launch';
@@ -80,14 +81,14 @@ export const TransactionsTable: FC<Props> = ({
         <Table sx={{ minWidth: 650 }} aria-label='Transactions table'>
           <TableHead>
             <TableRow>
-              <TableCell><Typography variant='h6'>TxID</Typography></TableCell>
-              <TableCell><Typography variant='h6'>Status</Typography></TableCell>
+              <TableCell><Tooltip title='Hash of transaction'><Typography variant='h6'>TxID</Typography></Tooltip></TableCell>
+              <TableCell><Tooltip title='Execution status'><Typography variant='h6'>Status</Typography></Tooltip></TableCell>
               {withCreator && (
-                <TableCell><Typography variant='h6'>Creator</Typography></TableCell>
+                <TableCell><Tooltip title='Pubkey-initiator of transaction'><Typography variant='h6'>Creator</Typography></Tooltip></TableCell>
               )}
-              <TableCell><Typography variant='h6'>TxType</Typography></TableCell>
-              <TableCell><Typography variant='h6'>Priority fee</Typography></TableCell>
-              <TableCell><Typography variant='h6'>Total fee</Typography></TableCell>
+              <TableCell><Tooltip title='Type of transaction'><Typography variant='h6'>TxType</Typography></Tooltip></TableCell>
+              <TableCell><Tooltip title='Fee to prioritize the transaction'><Typography variant='h6'>Priority fee</Typography></Tooltip></TableCell>
+              <TableCell><Tooltip title='Required + priority fees'><Typography variant='h6'>Total fee</Typography></Tooltip></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

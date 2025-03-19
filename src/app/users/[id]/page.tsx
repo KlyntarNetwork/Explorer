@@ -5,9 +5,11 @@ import { Box, Typography } from '@mui/material';
 import { ContentBlock, EntityPageLayout, Label, PageContainer, TransactionsTable } from '@/components/ui';
 import { fetchAccountById, fetchAccountTransactions } from '@/data';
 import { truncateMiddle } from '@/helpers';
-import { UserAccount} from '@/definitions';
+import { UserAccount } from '@/definitions';
 import AccountImage from '@public/icons/pages/account.svg';
 import Web3 from 'web3';
+
+
 
 export const metadata: Metadata = {
   title: 'Account info',
@@ -26,12 +28,13 @@ export default async function AccountByIdPage({ params }: Props) {
   const account = await fetchAccountById(shard, accountId) as UserAccount;
   const transactions  = await fetchAccountTransactions(shard, accountId);
 
-  if(account.type !== 'eoa') return <NotFoundPage/>
+  if(account.type !== 'eoa') return <NotFoundPage/>;
 
   return (
     <PageContainer sx={{ py: 6 }}>
       <EntityPageLayout
         header={{
+          clipBoardValue: accountId,
           title: 'Account info',
           value: truncateMiddle(accountId),
           label: {

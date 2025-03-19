@@ -1,12 +1,17 @@
-import { FC, ReactNode } from 'react';
+'use client';
+import { FC, ReactNode, useState } from 'react';
 import Link from 'next/link';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, IconButton, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { Label } from '@/components/ui';
 import LaunchIcon from '@mui/icons-material/Launch';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import ReactQR from 'react-qr-code';
 
 interface Props {
   children?: ReactNode,
   header: {
+    clipBoardValue?: string,
     title: string,
     value: string,
     label: {
@@ -26,11 +31,39 @@ export const EntityPageLayout: FC<Props> = ({
   header,
   items
 }) => {
+  const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+
+  const copyToClipboard = () => {    
+    navigator.clipboard.writeText(header.clipBoardValue || '').catch(err => console.error('Failed to copy:', err));
+  };
+
+  const handleOpenQrModal = () => {
+    setIsQrModalOpen(true);
+  };
+
+  const handleCloseQrModal = () => {
+    setIsQrModalOpen(false);
+  };
+
   const layoutHeader = (
     <Grid item xs={12}>
       <Typography variant='caption'>{header.title}</Typography>
-      <Typography variant='h1' sx={{ my: 0.25, wordBreak: 'break-all' }}>{header.value}</Typography>
-      <Label variant={header.label.variant}>{header.label.value}</Label>
+      <Grid container alignItems='center' spacing={1}>
+        <Grid item>
+          <Typography variant='h1' sx={{ my: 0.25, wordBreak: 'break-all' }}>{header.value}</Typography>
+        </Grid>
+        <Grid item>
+          <IconButton onClick={copyToClipboard} size='small'>
+            <ContentCopyIcon fontSize='small' />
+          </IconButton>
+        </Grid>
+        <Grid item>
+          <IconButton onClick={handleOpenQrModal} size='small'>
+            <QrCodeIcon fontSize='small' />
+          </IconButton>
+        </Grid>
+      </Grid>
+      <Label sx={{marginTop:2}} variant={header.label.variant}>{header.label.value}</Label>
       {header.actionText && (
         <>
           {header.actionText.url ? (
@@ -104,5 +137,20 @@ export const EntityPageLayout: FC<Props> = ({
     );
   }
 
-  return innerLayout;
-}
+  return (
+    <>
+      <Dialog open={isQrModalOpen} onClose={handleCloseQrModal}>
+        <DialogTitle>QR Code</DialogTitle>
+        <DialogContent sx={{ display: 'flex', justifyContent: 'center' }}>
+          <ReactQR value={header.clipBoardValue || ''} size={256} />
+        </DialogContent>
+        <DialogActions>
+          <IconButton onClick={handleCloseQrModal}>
+            Close
+          </IconButton>
+        </DialogActions>
+      </Dialog>
+      {innerLayout}
+    </>
+  );
+};

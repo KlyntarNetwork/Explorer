@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { TransactionPreview } from '@/definitions';
 import { TRANSACTIONS_PER_PAGE } from '@/constants';
 import { truncateMiddle } from '@/helpers';
-import { FlexBetweenBox, FlexCenterBox, GeometricButton, LoadMoreButton } from '@/components/ui';
+import { FlexBetweenBox, FlexCenterBox, GeometricButton, Label, LoadMoreButton } from '@/components/ui';
 import {
   Typography,
   Table,
@@ -53,12 +53,12 @@ export const TransactionsTable: FC<Props> = ({
 
   const withCreator = !!txs[0].creator;
 
-  const TxTableCell = ({ children }: { children: ReactNode }) => (
-    <TableCell sx={{ width: withCreator ? '20%' : '25%' }}>
+  const TxTableCell = ({ children, alignCenter }: { children: ReactNode; alignCenter?: boolean }) => (
+    <TableCell sx={{ width: withCreator ? '20%' : '25%' }} align={alignCenter ? 'center' : 'left'}>
       {children}
     </TableCell>
   );
-
+  
   return (
     <>
       <Box sx={{
@@ -81,6 +81,7 @@ export const TransactionsTable: FC<Props> = ({
           <TableHead>
             <TableRow>
               <TableCell><Typography variant='h6'>TxID</Typography></TableCell>
+              <TableCell><Typography variant='h6'>Status</Typography></TableCell>
               {withCreator && (
                 <TableCell><Typography variant='h6'>Creator</Typography></TableCell>
               )}
@@ -103,6 +104,9 @@ export const TransactionsTable: FC<Props> = ({
                       {truncateMiddle(tx.txid)}
                     </Typography>
                   </Link>
+                </TxTableCell>
+                <TxTableCell>
+                  <Label variant='green'>Success</Label>
                 </TxTableCell>
                 {tx.creator && (
                   <TxTableCell>

@@ -7,7 +7,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Box
+  Box,
+  Tooltip
 } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
 import Link from 'next/link';
@@ -71,11 +72,21 @@ export const LatestBlocksTable: FC<LatestBlocksTableProps> = async ({
         <Table sx={{ minWidth: 650 }} aria-label='Latest blocks table'>
           <TableHead>
             <TableRow>
-              <TableCell><Typography variant='h6'>SID</Typography></TableCell>
-              <TableCell><Typography variant='h6'>Creator</Typography></TableCell>
-              <TableCell><Typography variant='h6'>Index</Typography></TableCell>
-              <TableCell><Typography variant='h6'>Txs Number</Typography></TableCell>
-              <TableCell><Typography variant='h6'>Created at</Typography></TableCell>
+              <TableCell>
+                <Tooltip title='Absolute height of block in shard'><Typography variant='h6'>SID</Typography></Tooltip>
+              </TableCell>
+              <TableCell>
+                <Tooltip title='Address of the block creator'><Typography variant='h6'>Creator</Typography></Tooltip>
+              </TableCell>
+              <TableCell>
+                <Tooltip title='Index of block in current epoch by this creator'><Typography variant='h6'>Index</Typography></Tooltip>
+              </TableCell>
+              <TableCell>
+                <Tooltip title='Number of transactions in the block'><Typography variant='h6'>Txs Number</Typography></Tooltip>
+              </TableCell>
+              <TableCell>
+                <Tooltip title='Timestamp when the block was created'><Typography variant='h6'>Created at</Typography></Tooltip>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

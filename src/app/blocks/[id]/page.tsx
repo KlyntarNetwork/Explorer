@@ -35,6 +35,7 @@ export default async function BlockByIdPage({ params }: Props) {
       <EntityPageLayout
         header={{
           title: 'Block info',
+          clipBoardValue: block.id,
           value: block.truncatedId,
           label: {
             variant: status === 'Approved' ? 'green' : 'red',

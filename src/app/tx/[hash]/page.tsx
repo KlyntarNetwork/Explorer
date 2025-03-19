@@ -74,6 +74,7 @@ export default async function TransactionByIdPage({ params }: Props) {
       <EntityPageLayout
         header={{
           title: 'Transaction info',
+          clipBoardValue: tx.txHash,
           value: truncateMiddle(tx.txHash),
           label: {
             variant: tx.isOk ? 'green' : 'red',

@@ -34,8 +34,8 @@ export default async function AccountByIdPage({ params }: Props) {
     <PageContainer sx={{ py: 6 }}>
       <EntityPageLayout
         header={{
-          clipBoardValue: accountId,
           title: 'Account info',
+          clipBoardValue: accountId,
           value: truncateMiddle(accountId),
           label: {
             variant: 'green',

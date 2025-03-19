@@ -43,6 +43,7 @@ export default async function ContractByIdPage({ params }: Props) {
       <EntityPageLayout
         header={{
           title: 'Account info',
+          clipBoardValue: contractId,
           value: truncateMiddle(contractId),
           label: {
             variant: 'green',

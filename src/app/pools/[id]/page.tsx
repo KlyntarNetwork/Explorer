@@ -26,6 +26,7 @@ export default async function PoolByIdPage({ params }: Props) {
       <EntityPageLayout
         header={{
           title: 'Pool info',
+          clipBoardValue: poolId,
           value: truncateMiddle(poolId),
           label: {
             variant: pool.isActiveValidator ? 'green' : 'red',

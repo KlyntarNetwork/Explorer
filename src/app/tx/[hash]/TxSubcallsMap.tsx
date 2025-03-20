@@ -8,12 +8,11 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import Collapse from '@mui/material/Collapse';
-import WorkIcon from '@mui/icons-material/Work';
 import IconButton from '@mui/material/IconButton';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
-import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-import { ListItemIcon } from '@mui/material';
+import { Chip } from '@mui/material';
+
 
 export default function TxSubcallsMap() {
   const [open, setOpen] = React.useState(false);
@@ -46,7 +45,15 @@ export default function TxSubcallsMap() {
       <Collapse in={open} timeout="auto" unmountOnExit>
   <List component="div" disablePadding>
     <ListItem>
-        <ListItemText inset primary="Details 1 (coming soon)" />
+      <ListItemText
+        inset
+        primary="Details 1 (coming soon)"
+        secondary={
+          <span>
+            Called <Chip sx={{fontWeight:'bold'}} label="func()" size="small"/> for contract
+          </span>
+        }
+      />
     </ListItem>
     <ListItem>
       <ListItemText inset primary="Details 2 (coming soon)" />

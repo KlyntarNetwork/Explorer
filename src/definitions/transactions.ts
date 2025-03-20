@@ -50,5 +50,6 @@ export interface TransactionPreview {
   sigType: string;
   priorityFee: string;
   totalFee: string;
+  blockTimestamp?: number;
   creator?: string;
 }

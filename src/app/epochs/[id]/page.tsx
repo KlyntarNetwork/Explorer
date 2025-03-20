@@ -30,14 +30,14 @@ export default async function PoolByIdPage({ params }: Props) {
         <NavButton
           url={previousEpochRoute}
           variant='back'
-          label='Previous Epoch'
+          label='Previous epoch'
           sx={{ mb: 2 }}
           disabled={epoch.isFirst}
         />
         <NavButton
           url={nextEpochRoute}
           variant='forward'
-          label='Next Epoch'
+          label='Next epoch'
           sx={{ mb: 2 }}
           disabled={epoch.isCurrent}
         />
@@ -52,7 +52,7 @@ export default async function PoolByIdPage({ params }: Props) {
         </Grid>
         <Grid item xs={12} md={6}>
           <InfoBlock
-            title='Epoch Index'
+            title='Epoch index'
             value={epoch.id}
           />
         </Grid>
@@ -64,13 +64,13 @@ export default async function PoolByIdPage({ params }: Props) {
         </Grid>
         <Grid item xs={12} md={6}>
           <InfoBlock
-            title='Quorum Size'
+            title='Quorum size'
             value={epoch.quorumSize}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <InfoBlock
-            title='Total Validators'
+            title='Total validators'
             value={epoch.validatorsNumber}
           />
         </Grid>
@@ -94,7 +94,7 @@ export default async function PoolByIdPage({ params }: Props) {
         </Grid>
         <Grid item xs={12}>
           <InfoBlock
-            title='Epoch Hash'
+            title='Epoch hash'
             value={epoch.hash}
           />
         </Grid>

@@ -1,7 +1,7 @@
 'use client';
 import { FC, ReactNode, useState } from 'react';
 import Link from 'next/link';
-import { Grid, Typography, IconButton, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Grid, Typography, IconButton, Fade } from '@mui/material';
 import { Label } from '@/components/ui';
 import LaunchIcon from '@mui/icons-material/Launch';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -31,38 +31,58 @@ export const EntityPageLayout: FC<Props> = ({
   header,
   items
 }) => {
-  const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+  const [isQrVisible, setIsQrVisible] = useState(false);
 
   const copyToClipboard = () => {    
     navigator.clipboard.writeText(header.clipBoardValue || '').catch(err => console.error('Failed to copy:', err));
   };
 
-  const handleOpenQrModal = () => {
-    setIsQrModalOpen(true);
-  };
-
-  const handleCloseQrModal = () => {
-    setIsQrModalOpen(false);
+  const toggleQrVisibility = () => {
+    setIsQrVisible(prev => !prev);
   };
 
   const layoutHeader = (
     <Grid item xs={12}>
       <Typography variant='caption'>{header.title}</Typography>
-      <Grid container alignItems='center' spacing={1}>
-        <Grid item>
-          <Typography variant='h1' sx={{ my: 0.25, wordBreak: 'break-all' }}>{header.value}</Typography>
-        </Grid>
-        <Grid item>
-          <IconButton onClick={copyToClipboard} size='small'>
-            <ContentCopyIcon fontSize='small' />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton onClick={handleOpenQrModal} size='small'>
-            <QrCodeIcon fontSize='small' />
-          </IconButton>
-        </Grid>
-      </Grid>
+      <Grid container alignItems="center" spacing={1}>
+  <Grid item>
+    <Typography variant="h1" sx={{ my: 0.25, wordBreak: 'break-all' }}>
+      {header.value}
+    </Typography>
+  </Grid>
+
+  <Grid item>
+    <IconButton onClick={copyToClipboard} size="small">
+      <ContentCopyIcon fontSize="small" />
+    </IconButton>
+  </Grid>
+
+  <Grid item sx={{ display: 'flex', alignItems: 'center', position: 'relative', minWidth: 0 }}>
+    <IconButton onClick={toggleQrVisibility} size="small">
+      <QrCodeIcon fontSize="small" />
+    </IconButton>
+
+    <Fade in={isQrVisible}>
+      <span
+        style={{
+          position: 'absolute',
+          left: '120%',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          background: 'white',
+          padding: isQrVisible ? '8px' : 0,
+          borderRadius: '8px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+          zIndex: 10,
+          display: isQrVisible ? 'block' : 'none',
+        }}
+      >
+        <ReactQR value={header.clipBoardValue || ''} size={128} />
+      </span>
+    </Fade>
+  </Grid>
+</Grid>
+
       <Label sx={{marginTop:2}} variant={header.label.variant}>{header.label.value}</Label>
       {header.actionText && (
         <>
@@ -137,20 +157,5 @@ export const EntityPageLayout: FC<Props> = ({
     );
   }
 
-  return (
-    <>
-      <Dialog open={isQrModalOpen} onClose={handleCloseQrModal}>
-        <DialogTitle>QR Code</DialogTitle>
-        <DialogContent sx={{ display: 'flex', justifyContent: 'center' }}>
-          <ReactQR value={header.clipBoardValue || ''} size={256} />
-        </DialogContent>
-        <DialogActions>
-          <IconButton onClick={handleCloseQrModal}>
-            Close
-          </IconButton>
-        </DialogActions>
-      </Dialog>
-      {innerLayout}
-    </>
-  );
+  return innerLayout;
 };

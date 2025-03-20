@@ -3,7 +3,7 @@ import React, { ChangeEvent, FC, ReactNode, useState } from 'react';
 import Link from 'next/link';
 import { TransactionPreview } from '@/definitions';
 import { TRANSACTIONS_PER_PAGE } from '@/constants';
-import { truncateMiddle } from '@/helpers';
+import { FormattedDate, truncateMiddle } from '@/helpers';
 import { FlexBetweenBox, FlexCenterBox, GeometricButton, Label, LoadMoreButton } from '@/components/ui';
 import {
   Typography,
@@ -53,9 +53,10 @@ export const TransactionsTable: FC<Props> = ({
   }
 
   const withCreator = !!txs[0].creator;
+  const withTimestamp = !!txs[0].blockTimestamp;
 
-  const TxTableCell = ({ children, alignCenter }: { children: ReactNode; alignCenter?: boolean }) => (
-    <TableCell sx={{ width: withCreator ? '20%' : '25%' }} align={alignCenter ? 'center' : 'left'}>
+  const TxTableCell = ({ children }: { children: ReactNode }) => (
+    <TableCell sx={{ width: withCreator || withTimestamp ? '5%' : '25%' }}>
       {children}
     </TableCell>
   );
@@ -86,6 +87,9 @@ export const TransactionsTable: FC<Props> = ({
               {withCreator && (
                 <TableCell><Tooltip title='Pubkey-initiator of transaction'><Typography variant='h6'>Creator</Typography></Tooltip></TableCell>
               )}
+              {withTimestamp && (
+                <TableCell><Tooltip title='Time of block location of tx'><Typography variant='h6'>Timestamp</Typography></Tooltip></TableCell>
+              )}
               <TableCell><Tooltip title='Type of transaction'><Typography variant='h6'>TxType</Typography></Tooltip></TableCell>
               <TableCell><Tooltip title='Fee to prioritize the transaction'><Typography variant='h6'>Priority fee</Typography></Tooltip></TableCell>
               <TableCell><Tooltip title='Required + priority fees'><Typography variant='h6'>Total fee</Typography></Tooltip></TableCell>
@@ -112,6 +116,11 @@ export const TransactionsTable: FC<Props> = ({
                 {tx.creator && (
                   <TxTableCell>
                     <Typography sx={{ fontSize: '16px' }}>{truncateMiddle(tx.creator)}</Typography>
+                  </TxTableCell>
+                )}
+                {tx.blockTimestamp && (
+                  <TxTableCell>
+                    <Typography sx={{ fontSize: '16px' }}>{new FormattedDate(tx.blockTimestamp).preview}</Typography>
                   </TxTableCell>
                 )}
                 <TxTableCell>

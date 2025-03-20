@@ -41,7 +41,7 @@ export default async function PoolByIdPage({ params }: Props) {
         }}
         items={[
           <ContentBlock key="pool_id" title="Pool Id:" value={poolId} />,
-          <ContentBlock key="socials" title="Socials:">
+          [<ContentBlock key="socials" title="Socials:">
             <Box display="flex" gap={2}>
               {/* Twitter */}
               <IconButton
@@ -85,16 +85,11 @@ export default async function PoolByIdPage({ params }: Props) {
               </IconButton>
             </Box>
           </ContentBlock>,
-          <ContentBlock key="shard" title="Creation shard:" value={pool.poolOriginShard} />,
+          <ContentBlock key="shard" title="Creation shard:" value={pool.poolOriginShard} />],
           [
             <ContentBlock key="quorum_member_status" title="In current quorum:" value={pool.isCurrentQuorumMember ? 'Yes' : 'No'} />,
             <ContentBlock key="contract" title="Contract:" value="system/staking" />,
           ],
-          <ContentBlock
-            key="percentage"
-            title="Percentage:"
-            value={pool.poolStorage.percentage + '% (takes the pool)'}
-          />,
           [
             <ContentBlock
               key="kly"
@@ -106,7 +101,12 @@ export default async function PoolByIdPage({ params }: Props) {
               title="Staked UNO (multistaking points):"
               value={Web3.utils.fromWei(pool.poolStorage.totalStakedUno, 'ether')}
             />
-          ]
+          ],
+          <ContentBlock
+            key="percentage"
+            title="Percentage:"
+            value={pool.poolStorage.percentage + '% (takes the pool)'}
+          />
         ]}
       >
         <PoolImage width={421} height={426} viewBox="0 0 421 426" />

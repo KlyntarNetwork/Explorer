@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { PrettyJSON } from '@/components';
 import { ParsedBytecodeDisplay } from './ParsedBytecodeDisplay';
+import TxSubcallsMap from './TxSubcallsMap';
 import { ContentBlock, EntityPageLayout, Label, PageContainer } from '@/components/ui';
 import { describeTransactionCreatorFormat, fetchAccountById, fetchTransactionByTxHash } from '@/data';
 import { truncateMiddle } from '@/helpers';
@@ -154,7 +155,10 @@ export default async function TransactionByIdPage({ params }: Props) {
               value={tx.order}
             />
           ],
-          <ContentBlock key='payload' title='Payload:'>
+          <ContentBlock key='actions_map' title='Actions map:'>
+            <TxSubcallsMap/>
+          </ContentBlock>,
+          <ContentBlock key='payload' title='Payload(raw):'>
             <PrettyJSON data={tx.payload} />
           </ContentBlock>,
           (

@@ -20,7 +20,7 @@ export const NetworkStatus:FC<Props> = ({ data }) => {
     'Voting & DAO': '/contracts/dao_voting',
     'RWX smart contracts': '/contracts/rwx_contract',
     'Multistaking stats': '/contracts/multistaking',
-    'Symbiotic chains': '/coming-soon',
+    'Appchains': '/coming-soon',
     'Mutations': '/coming-soon',
     'Charts': '/coming-soon'
   }

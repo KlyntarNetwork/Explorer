@@ -21,6 +21,7 @@ export default async function AggregatedFinalizationProofPage({ params }: Aggreg
   return (
     <PageContainer sx={{ py: 6 }}>
       <Typography variant='h1'>Aggregated Finalization Proof (AFP)</Typography>
+      <Typography sx={{ mt: 1, mb: 6 }}>A set of signatures from a majority of a quorum (2/3) that finalizes this block with a given ID and hash</Typography>
       <Grid container spacing={1} sx={{ mt: 2 }}>
         <Grid item xs={12}>
           <ContentBlock

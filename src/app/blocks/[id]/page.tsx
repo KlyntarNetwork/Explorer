@@ -20,7 +20,7 @@ export default async function BlockByIdPage({ params }: Props) {
   const block = await fetchBlockById(id);
 
   const status = !!block.aggregatedFinalizationProof.proofs ? 'Approved' : 'Awaiting approval';
-
+  
   const txPreviews: TransactionPreview[] = block.transactions.map(tx => ({
     txid: tx.txHash,
     txType: tx.type,
@@ -54,6 +54,7 @@ export default async function BlockByIdPage({ params }: Props) {
             <ContentBlock key='txs_number' title='Txs Number:' value={block.txsNumber}/>,
             <ContentBlock key='index_in_own_sequence' title='Index in own sequence:' value={block.index}/>,
           ],
+          <ContentBlock key='this_block_hash' title='This block hash:' value={block.aggregatedFinalizationProof.blockHash}/>,
           <ContentBlock key='previous_block_hash' title='Previous block hash:' value={block.prevHash}/>
         ]}
       >

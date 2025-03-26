@@ -49,22 +49,42 @@ export default async function PoolByIdPage({ params }: Props) {
         }}
         items={[
           <ContentBlock key="pool_id" title="Pool Id:" value={poolId} />,
-          <ContentBlock key="staking_link" title="Staking link:">
-            <Button
-              component="a"
-              variant="contained"
-              color="primary"
-              href={`https://klyntar.org/staking?validator=${
-                poolId.split("(")[0]
-              }`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="StakingLink"
-              sx={{ width: "207px" }}
-            >
-              Stake here
-            </Button>
-          </ContentBlock>,
+          [
+            <ContentBlock key="staking_link" title="Staking link:">
+              <Button
+                component="a"
+                variant="contained"
+                color="primary"
+                href={`https://klyntar.org/staking?validator=${
+                  poolId.split("(")[0]
+                }`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="StakingLink"
+                sx={{ width: "207px" }}
+              >
+                Stake here
+              </Button>
+            </ContentBlock>,
+
+            <ContentBlock key="multistaking_link" title="Multistaking link:">
+              <Button
+                component="a"
+                variant="contained"
+                color="primary"
+                href={`https://klyntar.org/multistaking?validator=${
+                  poolId.split("(")[0]
+                }`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="StakingLink"
+                sx={{ width: "207px" }}
+              >
+                Multistake here
+              </Button>
+            </ContentBlock>,
+          ],
+
           [
             <ContentBlock key="socials" title="Socials:">
               <Box display="flex" gap={2}>

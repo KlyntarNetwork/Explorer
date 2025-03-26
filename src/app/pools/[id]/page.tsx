@@ -77,7 +77,7 @@ export default async function PoolByIdPage({ params }: Props) {
                 }`}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="StakingLink"
+                aria-label="MultistakingLink"
                 sx={{ width: "207px" }}
               >
                 Multistake here

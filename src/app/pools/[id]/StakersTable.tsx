@@ -14,7 +14,8 @@ import {
   TableRow,
   Box,
   TextField,
-  Tooltip
+  Tooltip,
+  LinearProgress
 } from '@mui/material';
 import Link from 'next/link';
 import LaunchIcon from '@mui/icons-material/Launch';
@@ -40,14 +41,29 @@ interface StakersTableProps {
 export const StakersTable: FC<StakersTableProps> = ({
   poolStakers, poolOriginShard
 }) => {
+
   const tableStakers = getTableData(poolStakers);
 
   const [stakers, setStakers] = useState(tableStakers.slice(0, STAKERS_PER_PAGE));
+  
   const [query, setQuery] = useState('');
+  
   const nextPage = Math.floor(stakers.length / STAKERS_PER_PAGE) + 1;
+  
   const nextPageAvailable = stakers.length < tableStakers.length;
 
   const filteredStakers = query ? stakers.filter(st => st.id.includes(query)) : stakers;
+
+  const totalStake = filteredStakers.reduce((sum, s) => sum + BigInt(s.kly) + BigInt(s.uno), BigInt(0));
+
+  const sortedStakers = [...filteredStakers].map((st) => {
+
+      const stakeAmount = BigInt(st.kly) + BigInt(st.uno);
+      const percentage = totalStake > 0 ? (Number(stakeAmount * BigInt(100)) / Number(totalStake)) : 0;
+      return { ...st, stakeAmount, percentage };
+    
+  }).sort((a, b) => b.percentage - a.percentage);
+
 
   const handleLoadMore = () => {
     if (nextPageAvailable) {
@@ -92,12 +108,13 @@ export const StakersTable: FC<StakersTableProps> = ({
                 </TableCell>
               <TableCell><Tooltip title='Amount of staked native coins'><Typography variant='h6'>KLY</Typography></Tooltip></TableCell>
               <TableCell><Tooltip title='Address of staked multistaking points'><Typography variant='h6'>UNO</Typography></Tooltip></TableCell>
+              <TableCell><Tooltip title='General percentage'><Typography variant='h6'>Percentage</Typography></Tooltip></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredStakers.map((st) => (
+            {sortedStakers.map((st) => (
               <TableRow key={st.id}>
-                <TableCell sx={{ width: '33%' }}>
+                <TableCell sx={{ width: '25%' }}>
                   <Link
                     href={`/users/${poolOriginShard}:${st.id}`}
                     passHref
@@ -109,11 +126,15 @@ export const StakersTable: FC<StakersTableProps> = ({
                     </Typography>
                   </Link>
                 </TableCell>
-                <TableCell sx={{ width: '33%' }}>
-                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.kly,'ether')}</Typography>
+                <TableCell sx={{ width: '25%' }}>
+                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.kly, 'ether')}</Typography>
                 </TableCell>
-                <TableCell sx={{ width: '33%' }}>
-                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.uno,'ether')}</Typography>
+                <TableCell sx={{ width: '25%' }}>
+                  <Typography sx={{ fontSize: '16px' }}>{Web3.utils.fromWei(st.uno, 'ether')}</Typography>
+                </TableCell>
+                <TableCell sx={{ width: '25%' }}>
+                  <Typography sx={{ fontSize: '16px', mb: 1 }}>{st.percentage.toFixed(2)}%</Typography>
+                  <LinearProgress variant="determinate" value={st.percentage} sx={{ height: 8, borderRadius: 4 }} />
                 </TableCell>
               </TableRow>
             ))}

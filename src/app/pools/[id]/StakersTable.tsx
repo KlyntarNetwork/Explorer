@@ -108,7 +108,7 @@ export const StakersTable: FC<StakersTableProps> = ({
                 </TableCell>
               <TableCell><Tooltip title='Amount of staked native coins'><Typography variant='h6'>KLY</Typography></Tooltip></TableCell>
               <TableCell><Tooltip title='Address of staked multistaking points'><Typography variant='h6'>UNO</Typography></Tooltip></TableCell>
-              <TableCell><Tooltip title='General percentage'><Typography variant='h6'>Percentage</Typography></Tooltip></TableCell>
+              <TableCell><Tooltip title='Percent of total staking power'><Typography variant='h6'>Percentage</Typography></Tooltip></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

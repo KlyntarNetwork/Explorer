@@ -61,7 +61,7 @@ export default async function PoolByIdPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="StakingLink"
-                sx={{ width: "207px" }}
+                sx={{ width: "208px" }}
               >
                 Stake here
               </Button>
@@ -78,7 +78,7 @@ export default async function PoolByIdPage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="MultistakingLink"
-                sx={{ width: "207px" }}
+                sx={{ width: "208px" }}
               >
                 Multistake here
               </Button>

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Metadata } from "next";
 import NotFoundPage from "@/app/not-found";
-import { Box, Typography, Tabs, Tab } from "@mui/material";
+import { Box, Typography, Tabs, Tab, CircularProgress } from "@mui/material";
 import {
   ContentBlock,
   EntityPageLayout,
@@ -66,12 +66,20 @@ export default function AccountByIdPage({ params }: Props) {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          flexDirection: "column",
           alignItems: "center",
-          height: "100vh",
+          justifyContent: "center",
+          height: "70vh",
         }}
       >
-        <Typography>Loading...</Typography>
+        <CircularProgress
+          sx={{
+            color: "white",
+            animation: "rotate 1.5s linear infinite",
+            width: "50px",
+            height: "50px",
+          }}
+        />
       </Box>
     );
   }

@@ -31,7 +31,7 @@ export default function Error() {
         500
       </Typography>
       <Typography variant="h6" sx={{ mb: 4 }}>
-        Something went wrong
+        Something wrong
       </Typography>
       <Button
         variant="contained"

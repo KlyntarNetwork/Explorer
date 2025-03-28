@@ -1,7 +1,7 @@
-'use client';
-import { useRouter } from 'next/navigation';
-import { Box, Typography, Button } from '@mui/material';
-import { majorMonoDisplay } from '@/styles/theme';
+"use client";
+import { useRouter } from "next/navigation";
+import { Box, Typography, Button } from "@mui/material";
+import { majorMonoDisplay } from "@/styles/theme";
 
 const NotFoundPage = () => {
   const router = useRouter();
@@ -13,26 +13,29 @@ const NotFoundPage = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        height: '75vh'
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        height: "75vh",
       }}
     >
-      <Typography variant="h1" sx={{
-        mb: 2,
-        fontFamily: majorMonoDisplay.style.fontFamily,
-        fontSize: '36px'
-      }}>
+      <Typography
+        variant="h1"
+        sx={{
+          mb: 2,
+          fontFamily: majorMonoDisplay.style.fontFamily,
+          fontSize: "36px",
+        }}
+      >
         404
       </Typography>
       <Typography variant="h6" sx={{ mb: 4 }}>
-        Page Not Found
+        Page not found
       </Typography>
       <Button variant="contained" onClick={handleGoBack}>
-        Go Back
+        Go back
       </Button>
     </Box>
   );

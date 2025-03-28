@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Typography, Box } from '@mui/material';
 import { PageContainer } from '@/components/ui';
-import { fetchBlockchainData, fetchRecentTotalBlocksAndTxs } from '@/data';
+import { fetchRecentTotalBlocksAndTxs } from '@/data';
 import { TransactionsChart } from '../blocks/sections/GeneralBlocksInfo/TransactionsChart';
 import { RecentBlockStats } from '@/definitions';
 

@@ -67,7 +67,11 @@ export default function ContractByIdPage({ params }: Props) {
   }, [params.id]);
 
   if (loading) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Typography>Loading...</Typography>
+      </Box>
+    );
   }
 
   if (!contract || contract.type !== 'contract') {
@@ -123,11 +127,19 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
-    <Box sx={{ mt: 10 }}>
-      <Tabs sx={{mb: 10}} value={tabIndex} onChange={(_, newIndex) => setTabIndex(newIndex)}>
+    
+<Box sx={{ mt: 10, overflowX: 'auto', whiteSpace: 'nowrap' }}>
+  <Tabs
+    sx={{ mb: 10, minWidth: 'max-content' }}
+    value={tabIndex}
+    onChange={(_, newIndex) => setTabIndex(newIndex)}
+  >
         <Tab label='Transactions' />
         <Tab label='Staking data' />
-        <Tab label='Contract data' />
+        <Tab label='Source code' />
+        <Tab label='Read contract' />
+        <Tab label='Write contract' />
+        <Tab label='Storage' />
       </Tabs>
 
       {tabIndex === 0 && (
@@ -141,6 +153,15 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
         <Typography textAlign={'center'} sx={{ mt: 2 }}>This will be available later</Typography>
       )}
       {tabIndex === 2 && (
+        <Typography textAlign={'center'} sx={{ mt: 2 }}>This will be available later</Typography>
+      )}
+      {tabIndex === 3 && (
+        <Typography textAlign={'center'} sx={{ mt: 2 }}>This will be available later</Typography>
+      )}
+      {tabIndex === 4 && (
+        <Typography textAlign={'center'} sx={{ mt: 2 }}>This will be available later</Typography>
+      )}
+      {tabIndex === 5 && (
         <Typography textAlign={'center'} sx={{ mt: 2 }}>This will be available later</Typography>
       )}
     </Box>

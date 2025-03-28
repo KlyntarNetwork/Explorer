@@ -61,6 +61,22 @@ export default async function RawTransactionWithDetailsPage({ params }: RawTrans
           </ContentBlock>
         </Grid>
       </Grid>
+      <Typography mt={8} variant='h1'>State changes</Typography>
+      <Grid container spacing={1} sx={{ mt: 2 }}>
+        <Grid item xs={12}>
+          <ContentBlock>
+            <Typography textAlign={'center'} sx={{ mt: 3 }}>This will be available later</Typography>
+          </ContentBlock>
+        </Grid>
+      </Grid>
+      <Typography mt={8} variant='h1'>Events log</Typography>
+      <Grid container spacing={1} sx={{ mt: 2 }}>
+        <Grid item xs={12}>
+          <ContentBlock>
+            <Typography textAlign={'center'} sx={{ mt: 3 }}>This will be available later</Typography>
+          </ContentBlock>
+        </Grid>
+      </Grid>
     </PageContainer>
   );
 }

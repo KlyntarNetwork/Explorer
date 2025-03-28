@@ -51,7 +51,11 @@ export default function AccountByIdPage({ params }: Props) {
   }, [params.id]);
 
   if (loading) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Typography>Loading...</Typography>
+      </Box>
+    );
   }
 
   if (!account || account.type !== 'eoa') {
@@ -97,10 +101,15 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <Box sx={{ mt: 10 }}>
-      <Tabs sx={{mb: 10}} value={activeTab} onChange={(_, newValue) => setActiveTab(newValue)}>
+<Box sx={{ mt: 10, overflowX: 'auto', whiteSpace: 'nowrap' }}>
+  <Tabs
+    sx={{ mb: 10, minWidth: 'max-content' }}
+    value={activeTab}
+    onChange={(_, newIndex) => setActiveTab(newIndex)}
+  >
         <Tab label='Transactions' />
         <Tab label='Staking data' />
+        <Tab label='Portfolio' />
       </Tabs>
 
       {activeTab === 0 && (
@@ -111,6 +120,9 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
         </>
       )}
       {activeTab === 1 && (
+        <Typography textAlign={'center'} sx={{ mt: 3 }}>This will be available later</Typography>
+      )}
+      {activeTab === 2 && (
         <Typography textAlign={'center'} sx={{ mt: 3 }}>This will be available later</Typography>
       )}
     </Box>

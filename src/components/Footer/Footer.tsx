@@ -66,7 +66,7 @@ const FooterLink: FC<{
     <Typography
       color='text.primary'
       sx={{
-        textDecoration: 'none', // Убираем подчеркивание по умолчанию
+        textDecoration: 'none',
         lineHeight: '33px',
         display: 'block',
         transition: 'text-decoration-thickness 0.2s ease, text-underline-offset 0.2s ease',
@@ -82,7 +82,7 @@ const FooterLink: FC<{
         passHref
         style={{
           color: 'inherit',
-          textDecoration: 'inherit' // Наследуем стиль у родителя
+          textDecoration: 'none'
         }}
       >
         {title}

@@ -76,7 +76,7 @@ const ContentLink: FC<{ title: string, url: string, disabled?: boolean }> = ({
         passHref
         style={{
           color: 'inherit',
-          textDecorationThickness: 'inherit',
+          textDecoration:'none',
           cursor: disabled ? 'default' : 'pointer'
         }}
         aria-disabled={disabled}

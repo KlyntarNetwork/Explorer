@@ -14,7 +14,13 @@ export const Indicator: FC<Props> = ({ color = COLORS.GREEN }) => {
         height: '6px',
         borderRadius: '3px',
         background: color,
-        mr: 1.5
+        mr: 1.5,
+        animation: 'blink 1.5s infinite ease-in-out',
+        '@keyframes blink': {
+          '0%': { opacity: 1 },
+          '50%': { opacity: 0.5 },
+          '100%': { opacity: 1 }
+        }
       }}
     />
   );

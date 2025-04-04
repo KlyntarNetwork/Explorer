@@ -11,8 +11,8 @@ export const SigHashes = {
     '42842e0e' : 'safeTransferFrom(address,address,uint256)',  // SafeTransferFrom
     'b88d4fde' : 'safeTransferFrom(address,address,uint256,bytes)',  // SafeTransferFrom with data
     'a22cb465' : 'setApprovalForAll(address,bool)',  // SetApprovalForAll
-    'e985e9c5' : 'getApproved(uint256)',  // GetApproved
-    '081812fc' : 'isApprovedForAll(address,address)',  // IsApprovedForAll
+    'e985e9c5' : 'getFinalized(uint256)',  // GetFinalized
+    '081812fc' : 'isFinalizedForAll(address,address)',  // IsFinalizedForAll
     '6352211e' : 'ownerOf(uint256)',  // OwnerOf
     
     // ERC-1155

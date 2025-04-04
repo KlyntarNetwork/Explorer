@@ -19,7 +19,7 @@ export default async function BlockByIdPage({ params }: Props) {
   const id = decodeURIComponent(params.id);
   const block = await fetchBlockById(id);
 
-  const status = !!block.aggregatedFinalizationProof.proofs ? 'Approved' : 'Awaiting approval';
+  const status = !!block.aggregatedFinalizationProof.proofs ? 'Finalized' : 'Awaiting finalization';
   
   const txPreviews: TransactionPreview[] = block.transactions.map(tx => ({
     txid: tx.txHash,
@@ -38,7 +38,7 @@ export default async function BlockByIdPage({ params }: Props) {
           clipBoardValue: block.id,
           value: block.truncatedId,
           label: {
-            variant: status === 'Approved' ? 'green' : 'red',
+            variant: status === 'Finalized' ? 'green' : 'red',
             value: status
           },
           actionText: {

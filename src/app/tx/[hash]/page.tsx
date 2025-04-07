@@ -16,6 +16,8 @@ import {
 import { truncateMiddle } from "@/helpers";
 import { TX_TYPE } from "@/definitions";
 import Web3 from "web3";
+import { Typography } from "@mui/material";
+import CoinIcon from "@public/icons/company/CoinIcon.svg";
 
 interface Props {
   params: {
@@ -121,16 +123,25 @@ export default async function TransactionByIdPage({ params }: Props) {
               value={tx.type}
               comment={tx.typeDescription}
             />,
-            <ContentBlock
-              key="version"
-              title="Coins transferred:"
-              value={
-                Web3.utils.fromWei(
+            <ContentBlock key="version" title="Coins transferred:">
+              <Typography
+                sx={{
+                  fontSize: "24px",
+                  lineHeight: "30px",
+                  fontWeight: 300,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+                color="primary.main"
+              >
+                {Web3.utils.fromWei(
                   tx.payload.amount || tx.payload.value || "0",
                   "ether"
-                ) + " KLY"
-              }
-            />,
+                )}
+                <CoinIcon style={{ width: 24, height: 24 }} />
+              </Typography>
+            </ContentBlock>,
             <ContentBlock key="nonce" title="Nonce: " value={tx.nonce} />,
           ],
           <ContentBlock key="signature" title="Signature:" value={tx.sig} />,
@@ -160,22 +171,40 @@ export default async function TransactionByIdPage({ params }: Props) {
             </ContentBlock>,
           ],
           [
-            <ContentBlock
-              key="proposed_fee"
-              title="Priority fee:"
-              value={
-                tx.priorityFee
+            <ContentBlock key="proposed_fee" title="Priority fee:">
+              <Typography
+                sx={{
+                  fontSize: "24px",
+                  lineHeight: "30px",
+                  fontWeight: 300,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+                color="primary.main"
+              >
+                {tx.priorityFee
                   ? Web3.utils.fromWei(tx.priorityFee, "ether")
-                  : "0"
-              }
-            />,
-            <ContentBlock
-              key="real_fee"
-              title="Total charged fee:"
-              value={
-                tx.totalFee ? Web3.utils.fromWei(tx.totalFee, "ether") : "0"
-              }
-            />,
+                  : "0"}
+                <CoinIcon style={{ width: 24, height: 24 }} />
+              </Typography>
+            </ContentBlock>,
+            <ContentBlock key="real_fee" title="Total charged fee:">
+              <Typography
+                sx={{
+                  fontSize: "24px",
+                  lineHeight: "30px",
+                  fontWeight: 300,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+                color="primary.main"
+              >
+                {tx.totalFee ? Web3.utils.fromWei(tx.totalFee, "ether") : "0"}
+                <CoinIcon style={{ width: 24, height: 24 }} />
+              </Typography>
+            </ContentBlock>,
           ],
           [
             <ContentBlock

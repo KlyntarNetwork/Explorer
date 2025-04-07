@@ -17,6 +17,7 @@ import ContractImage from "@public/icons/pages/contract.svg";
 import NotFoundPage from "@/app/not-found";
 import Web3 from "web3";
 import { CircularProgress } from "@mui/material";
+import CoinIcon from "@public/icons/company/CoinIcon.svg";
 
 const metadata: Metadata = {
   title: "Account info",
@@ -123,11 +124,22 @@ export default function ContractByIdPage({ params }: Props) {
           </ContentBlock>,
           [
             <ContentBlock key="shard" title="Shard:" value={shardId} />,
-            <ContentBlock
-              key="balance"
-              title="Balance:"
-              value={Web3.utils.fromWei(contract.balance, "ether") + " KLY"}
-            />,
+            <ContentBlock key="balance" title="Balance:">
+              <Typography
+                sx={{
+                  fontSize: "24px",
+                  lineHeight: "30px",
+                  fontWeight: 300,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+                color="primary.main"
+              >
+                {Web3.utils.fromWei(contract.balance, "ether")}
+                <CoinIcon style={{ width: 24, height: 24 }} />
+              </Typography>
+            </ContentBlock>,
           ],
           [
             <ContentBlock
@@ -182,10 +194,12 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
       >
         <Tab label="Transactions" />
         <Tab label="Staking data" />
+        <Tab label="Portfolio" />
         <Tab label="Source code" />
-        <Tab label="Read contract" />
-        <Tab label="Write contract" />
+        <Tab label="Interaction" />
         <Tab label="Storage" />
+        <Tab label="Events" />
+        <Tab label="Analytics" />
       </Tabs>
 
       {tabIndex === 0 && (
@@ -220,6 +234,16 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
         </Typography>
       )}
       {tabIndex === 5 && (
+        <Typography textAlign={"center"} sx={{ mt: 2 }}>
+          This will be available later
+        </Typography>
+      )}
+      {tabIndex === 6 && (
+        <Typography textAlign={"center"} sx={{ mt: 2 }}>
+          This will be available later
+        </Typography>
+      )}
+      {tabIndex === 7 && (
         <Typography textAlign={"center"} sx={{ mt: 2 }}>
           This will be available later
         </Typography>

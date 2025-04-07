@@ -15,6 +15,7 @@ import { fetchAccountById, fetchAccountTransactions } from "@/data";
 import { truncateMiddle } from "@/helpers";
 import { TransactionPreview, UserAccount } from "@/definitions";
 import AccountImage from "@public/icons/pages/account.svg";
+import CoinIcon from "@public/icons/company/CoinIcon.svg";
 import Web3 from "web3";
 
 const metadata: Metadata = {
@@ -111,11 +112,22 @@ export default function AccountByIdPage({ params }: Props) {
           </ContentBlock>,
           [
             <ContentBlock key="shard" title="Shard:" value={shard} />,
-            <ContentBlock
-              key="balance"
-              title="Balance:"
-              value={Web3.utils.fromWei(account.balance, "ether") + " KLY"}
-            />,
+            <ContentBlock key="balance" title="Balance:">
+              <Typography
+                sx={{
+                  fontSize: "24px",
+                  lineHeight: "30px",
+                  fontWeight: 300,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+                color="primary.main"
+              >
+                {Web3.utils.fromWei(account.balance, "ether")}
+                <CoinIcon style={{ width: 24, height: 24 }} />
+              </Typography>
+            </ContentBlock>,
           ],
           [
             <ContentBlock key="nonce" title="Nonce:" value={account.nonce} />,
@@ -148,6 +160,7 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
         <Tab label="Transactions" />
         <Tab label="Staking data" />
         <Tab label="Portfolio" />
+        <Tab label="Analytics" />
       </Tabs>
 
       {activeTab === 0 && (
@@ -165,6 +178,11 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
         </Typography>
       )}
       {activeTab === 2 && (
+        <Typography textAlign={"center"} sx={{ mt: 3 }}>
+          This will be available later
+        </Typography>
+      )}
+      {activeTab === 3 && (
         <Typography textAlign={"center"} sx={{ mt: 3 }}>
           This will be available later
         </Typography>

@@ -18,6 +18,8 @@ import NotFoundPage from "@/app/not-found";
 import Web3 from "web3";
 import { CircularProgress } from "@mui/material";
 import CoinIcon from "@public/icons/company/CoinIcon.svg";
+import { InteractionSection } from "../InteractionSection";
+
 
 const metadata: Metadata = {
   title: "Account info",
@@ -177,12 +179,12 @@ export default function ContractByIdPage({ params }: Props) {
         <ContractImage width={421} height={426} viewBox="0 0 421 426" />
       </EntityPageLayout>
 
-      <TabSection transactions={transactions} />
+      <TabSection contractId={contractId} transactions={transactions} />
     </PageContainer>
   );
 }
 
-function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
+function TabSection({ contractId, transactions }: { contractId:string, transactions: TransactionPreview[] }) {
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
@@ -229,9 +231,7 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
         </Typography>
       )}
       {tabIndex === 4 && (
-        <Typography textAlign={"center"} sx={{ mt: 2 }}>
-          This will be available later
-        </Typography>
+        <InteractionSection abi={[]} address={contractId} />
       )}
       {tabIndex === 5 && (
         <Typography textAlign={"center"} sx={{ mt: 2 }}>

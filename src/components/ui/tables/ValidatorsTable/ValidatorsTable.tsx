@@ -7,7 +7,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 
 import React, { ChangeEvent, FC, ReactNode, useState } from 'react';
 
-import { FlexBetweenBox, FlexCenterBox, GeometricButton, LoadMoreButton } from '@/components/ui';
+import { FlexBetweenBox, FlexCenterBox, GeometricButton, Label, LoadMoreButton } from '@/components/ui';
 import {
   Table,
   TableBody,
@@ -50,7 +50,7 @@ export const VadlidatorsTable: FC<InfoBlockProps> = ({
  
 
   const ValidatorTableCell = ({ children }: { children: ReactNode }) => (
-    <TableCell sx={{ width: '25%' }}>
+    <TableCell sx={{ width: '20%' }}>
       {children}
     </TableCell>
   );
@@ -77,6 +77,7 @@ export const VadlidatorsTable: FC<InfoBlockProps> = ({
            <TableHead>
              <TableRow>
                <TableCell><Typography variant='h6'>ValidatorID</Typography></TableCell>
+               <TableCell><Typography variant='h6'>Alias</Typography></TableCell>
                <TableCell><Typography variant='h6'>In quorum</Typography></TableCell>
              </TableRow>
            </TableHead>
@@ -96,7 +97,14 @@ export const VadlidatorsTable: FC<InfoBlockProps> = ({
                    </Link>
                  </ValidatorTableCell>
                  <ValidatorTableCell>
-                  <Typography sx={{ fontSize: '16px' }}>{validatorData.inQuorum ? 'Yes' : 'No'}</Typography>
+                  <Typography sx={{ fontSize: '16px' }}>
+                    N/A
+                  </Typography>
+                </ValidatorTableCell>
+                 <ValidatorTableCell>
+                  <Typography sx={{ fontSize: '16px' }}>
+                    <Label variant={validatorData.inQuorum ? "green" : "red"}>{validatorData.inQuorum ? 'Yes' : 'No'}</Label>
+                  </Typography>
                 </ValidatorTableCell>
                </TableRow>
              ))}

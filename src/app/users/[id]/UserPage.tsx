@@ -13,7 +13,7 @@ import {
 import { fetchAccountById, fetchAccountTransactions } from "@/data";
 import { truncateMiddle } from "@/helpers";
 import { TransactionPreview, UserAccount } from "@/definitions";
-import AccountImage from "@public/icons/pages/account.svg";
+import AccountImage from "@public/icons/pages/account2.svg";
 import CoinIcon from "@public/icons/company/CoinIcon.svg";
 import Web3 from "web3";
 
@@ -134,7 +134,7 @@ export default function UserPage({ params }: Props) {
           ],
         ]}
       >
-        <AccountImage width={421} height={426} viewBox="0 0 421 426" />
+        <AccountImage/>
       </EntityPageLayout>
 
       <TabSection transactions={transactions} />

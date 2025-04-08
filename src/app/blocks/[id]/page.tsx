@@ -3,7 +3,7 @@ import { ContentBlock, TransactionsTable, EntityPageLayout, PageContainer } from
 import { Box, Typography } from '@mui/material';
 import { fetchBlockById } from '@/data';
 import { TransactionPreview } from '@/definitions';
-import BlockImage from '@public/icons/pages/block.svg';
+import BlockImage from '@public/icons/pages/block2.svg';
 
 interface Props {
   params: {
@@ -58,7 +58,7 @@ export default async function BlockByIdPage({ params }: Props) {
           <ContentBlock key='previous_block_hash' title='Previous block hash:' value={block.prevHash}/>
         ]}
       >
-        <BlockImage width={421} height={426} viewBox='0 0 421 426' />
+        <BlockImage/>
       </EntityPageLayout>
 
       <Box sx={{ mt: 16 }}>

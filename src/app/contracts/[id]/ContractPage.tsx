@@ -12,7 +12,7 @@ import {
   TransactionsTable,
 } from "@/components/ui";
 import { ContractAccount, TransactionPreview } from "@/definitions";
-import ContractImage from "@public/icons/pages/contract.svg";
+import ContractImage from "@public/icons/pages/contract2.svg";
 import NotFoundPage from "@/app/not-found";
 import Web3 from "web3";
 import { CircularProgress } from "@mui/material";
@@ -170,7 +170,7 @@ export default function ContractPage({ params }: Props) {
           ),
         ]}
       >
-        <ContractImage width={421} height={426} viewBox="0 0 421 426" />
+        <ContractImage/>
       </EntityPageLayout>
 
       <TabSection contractId={contractId} transactions={transactions} />

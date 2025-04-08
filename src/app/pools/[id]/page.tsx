@@ -4,7 +4,7 @@ import { Box, Typography, IconButton, Button } from "@mui/material";
 import { fetchPoolById } from "@/data";
 import { truncateMiddle } from "@/helpers";
 import { StakersTable } from "./StakersTable";
-import PoolImage from "@public/icons/pages/pool.svg";
+import PoolImage from "@public/icons/pages/pool2.svg";
 import Web3 from "web3";
 import { Language, Telegram } from "@mui/icons-material";
 import XIcon from "@mui/icons-material/X";
@@ -172,7 +172,7 @@ export default async function PoolByIdPage({ params }: Props) {
           />,
         ]}
       >
-        <PoolImage width={421} height={426} viewBox="0 0 421 426" />
+        <PoolImage/>
       </EntityPageLayout>
 
       <Box sx={{ mt: 16 }}>

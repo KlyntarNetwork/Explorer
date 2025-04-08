@@ -48,7 +48,6 @@ export default async function PoolByIdPage({ params }: Props) {
           },
         }}
         items={[
-          <ContentBlock key="pool_id" title="Pool Id:" value={poolId} />,
           [
             <ContentBlock key="staking_link" title="Staking link:">
               <Button

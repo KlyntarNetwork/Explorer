@@ -33,7 +33,6 @@
     "react-dom": "latest",
     "react-fast-marquee": "^1.6.5",
     "react-json-formatter": "^0.4.0",
-    "react-qr-code": "^2.0.15",
     "web3": "^1.10.4"
   },
   "devDependencies": {

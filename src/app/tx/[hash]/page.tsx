@@ -139,7 +139,7 @@ export default async function TransactionByIdPage({ params }: Props) {
                   tx.payload.amount || tx.payload.value || "0",
                   "ether"
                 )}
-                <CoinIcon style={{ width: 24, height: 24 }} />
+                <CoinIcon/>
               </Typography>
             </ContentBlock>,
             <ContentBlock key="nonce" title="Nonce: " value={tx.nonce} />,
@@ -186,7 +186,7 @@ export default async function TransactionByIdPage({ params }: Props) {
                 {tx.priorityFee
                   ? Web3.utils.fromWei(tx.priorityFee, "ether")
                   : "0"}
-                <CoinIcon style={{ width: 24, height: 24 }} />
+                <CoinIcon/>
               </Typography>
             </ContentBlock>,
             <ContentBlock key="real_fee" title="Total charged fee:">
@@ -202,7 +202,7 @@ export default async function TransactionByIdPage({ params }: Props) {
                 color="primary.main"
               >
                 {tx.totalFee ? Web3.utils.fromWei(tx.totalFee, "ether") : "0"}
-                <CoinIcon style={{ width: 24, height: 24 }} />
+                <CoinIcon/>
               </Typography>
             </ContentBlock>,
           ],

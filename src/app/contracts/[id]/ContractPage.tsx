@@ -133,7 +133,7 @@ export default function ContractPage({ params }: Props) {
                 color="primary.main"
               >
                 {Web3.utils.fromWei(contract.balance, "ether")}
-                <CoinIcon style={{ width: 24, height: 24 }} />
+                <CoinIcon/>
               </Typography>
             </ContentBlock>,
           ],

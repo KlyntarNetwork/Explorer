@@ -120,7 +120,7 @@ export default function UserPage({ params }: Props) {
                 color="primary.main"
               >
                 {Web3.utils.fromWei(account.balance, "ether")}
-                <CoinIcon style={{ width: 24, height: 24 }} />
+                <CoinIcon/>
               </Typography>
             </ContentBlock>,
           ],

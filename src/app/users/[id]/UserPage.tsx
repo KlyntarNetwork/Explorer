@@ -146,11 +146,14 @@ function TabSection({ transactions }: { transactions: TransactionPreview[] }) {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <Box sx={{ mt: 10, overflowX: "auto", whiteSpace: "nowrap" }}>
+    <Box sx={{ mt: 10, whiteSpace: "nowrap" }}>
       <Tabs
-        sx={{ mb: 10, minWidth: "max-content" }}
+        sx={{ mb: 10 }}
         value={activeTab}
         onChange={(_, newIndex) => setActiveTab(newIndex)}
+        variant="scrollable"
+        scrollButtons={'auto'}
+        allowScrollButtonsMobile
       >
         <Tab label="Transactions" />
         <Tab label="Staking data" />

@@ -29,3 +29,8 @@ div::-webkit-scrollbar-thumb {
   --tw-text-opacity: 1;
   color: rgb(94 234 212 / var(--tw-text-opacity));
 }
+
+
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}

@@ -142,9 +142,9 @@ export default async function PoolByIdPage({ params }: Props) {
               value={pool.isCurrentQuorumMember ? "Yes" : "No"}
             />,
             <ContentBlock
-              key="contract"
-              title="Contract:"
-              value="system/staking"
+              key="percentage"
+              title="Percentage:"
+              value={pool.poolStorage.percentage + "% (takes the pool)"}
             />,
           ],
           [
@@ -165,17 +165,12 @@ export default async function PoolByIdPage({ params }: Props) {
               )}
             />,
           ],
-          <ContentBlock
-            key="percentage"
-            title="Percentage:"
-            value={pool.poolStorage.percentage + "% (takes the pool)"}
-          />,
         ]}
       >
-        <PoolImage/>
+        <PoolImage />
       </EntityPageLayout>
 
-      <Box sx={{ mt: 16 }}>
+      <Box sx={{ mt: 10 }}>
         <Typography variant="h1">Stakers</Typography>
         <StakersTable
           poolStakers={pool.poolStorage.stakers}

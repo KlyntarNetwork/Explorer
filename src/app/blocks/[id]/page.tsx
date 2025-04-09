@@ -48,8 +48,10 @@ export default async function BlockByIdPage({ params }: Props) {
         }}
         items={[
           <ContentBlock key='creator' title='Creator:' url={`/pools/${block.creator}(POOL)`} value={block.creator}/>,
-          <ContentBlock key='created_at' title='Created at:' value={block.createdAt}/>,
-          <ContentBlock key='epoch' title='Epoch:' url={`/epochs/${block.epochId}`} value={block.epoch}/>,
+          [
+            <ContentBlock key='created_at' title='Created at:' value={block.createdAt}/>,
+            <ContentBlock key='epoch' title='Epoch:' url={`/epochs/${block.epochId}`} value={block.epochId}/>
+          ],
           [
             <ContentBlock key='txs_number' title='Txs Number:' value={block.txsNumber}/>,
             <ContentBlock key='index_in_own_sequence' title='Index in own sequence:' value={block.index}/>,

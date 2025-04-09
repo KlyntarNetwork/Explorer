@@ -133,7 +133,7 @@ export default function ContractPage({ params }: Props) {
                 color="primary.main"
               >
                 {Web3.utils.fromWei(contract.balance, "ether")}
-                <CoinIcon/>
+                <CoinIcon />
               </Typography>
             </ContentBlock>,
           ],
@@ -170,7 +170,7 @@ export default function ContractPage({ params }: Props) {
           ),
         ]}
       >
-        <ContractImage/>
+        <ContractImage />
       </EntityPageLayout>
 
       <TabSection contractId={contractId} transactions={transactions} />
@@ -188,11 +188,14 @@ function TabSection({
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
-    <Box sx={{ mt: 10, overflowX: "auto", whiteSpace: "nowrap" }}>
+    <Box sx={{ mt: 10, whiteSpace: "nowrap" }}>
       <Tabs
-        sx={{ mb: 10, minWidth: "max-content" }}
+        sx={{ mb: 10 }}
         value={tabIndex}
         onChange={(_, newIndex) => setTabIndex(newIndex)}
+        variant="scrollable"
+        scrollButtons={"auto"}
+        allowScrollButtonsMobile
       >
         <Tab label="Transactions" />
         <Tab label="Staking data" />

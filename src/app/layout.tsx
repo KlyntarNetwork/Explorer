@@ -7,6 +7,7 @@ import { Footer, Header } from '@/components';
 import { metadataConfig } from '@/config';
 import theme from '@/styles/theme';
 import '@/styles/global.css';
+import BackToTopButton from '@/components/BackToTop';
 
 export const metadata = metadataConfig;
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Header />
             {children}
             <Footer/>
+            <BackToTopButton />
           </ThemeProvider>
         </AppRouterCacheProvider>
         <Analytics />

@@ -60,7 +60,7 @@ export const Header = () => {
           <OutlinedButton
             icon={<Close />}
             onClick={() => setIsOpen(false)}
-            sx={{ display: { '@media (min-width: 1040px)': {
+            sx={{ display: { '@media (min-width: 1045px)': {
                 display: 'none',
               }, } }}
           />
@@ -68,7 +68,7 @@ export const Header = () => {
           <OutlinedButton
             icon={<MenuIcon />}
             onClick={() => setIsOpen(true)}
-            sx={{ display: { '@media (min-width: 1040px)': {
+            sx={{ display: { '@media (min-width: 1045px)': {
                 display: 'none',
               }, } }}
           />
@@ -76,7 +76,7 @@ export const Header = () => {
         <Box
           sx={{
             display: {
-              '@media (max-width: 1040px)': {
+              '@media (max-width: 1045px)': {
                 display: 'none',
               },
               md: 'flex',
@@ -93,7 +93,7 @@ export const Header = () => {
         in={isOpen}
         timeout='auto'
         unmountOnExit
-        sx={{ display: { '@media (min-width: 1040px)': {
+        sx={{ display: { '@media (min-width: 1045px)': {
                 display: 'none',
               },} }}
       >

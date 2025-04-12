@@ -121,8 +121,8 @@ export const DesktopNetworksList: FC<{ sx?: SxProps }> = ({ sx }) => {
 
 export const MobileNetworksList = () => {
   return (
-    <FlexColumnBox sx={{ width: '100%', gap: 1 }}>
-      <FlexColumnBox sx={{ width: '100%', gap: 0.5 }}>
+    <FlexColumnBox sx={{ width: '100%', gap: 0 }}>
+      <FlexColumnBox sx={{ width: '100%', gap: 0 }}>
         {networks.map(({ label, base, url }) => (
           <Typography
             key={url}

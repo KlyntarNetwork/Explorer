@@ -67,7 +67,7 @@ export const ParsedBytecodeDisplay: FC<Props> = ({ bytecode }) => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            height: "70vh",
+            height: "65vh",
           }}
         >
           <CircularProgress

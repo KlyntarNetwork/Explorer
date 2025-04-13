@@ -20,7 +20,7 @@ const ComingSoonPage = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        height: '75vh'
+        height: '65vh'
       }}
     >
       <Typography variant='h6' sx={{ mb: 4 }}>

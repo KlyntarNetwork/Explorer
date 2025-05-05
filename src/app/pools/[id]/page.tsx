@@ -54,7 +54,7 @@ export default async function PoolByIdPage({ params }: Props) {
                 component="a"
                 variant="contained"
                 color="primary"
-                href={`https://klyntar.org/staking?validator=${
+                href={`https://portal.klyntar.org/stake?validator=${
                   poolId.split("(")[0]
                 }`}
                 target="_blank"
@@ -71,7 +71,7 @@ export default async function PoolByIdPage({ params }: Props) {
                 component="a"
                 variant="contained"
                 color="primary"
-                href={`https://klyntar.org/multistaking?validator=${
+                href={`https://portal.klyntar.org/multistake?validator=${
                   poolId.split("(")[0]
                 }`}
                 target="_blank"

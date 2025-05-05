@@ -233,7 +233,7 @@ function TabSection({
           This will be available later
         </Typography>
       )}
-      {tabIndex === 4 && <InteractionSection abi={[]} address={contractId} />}
+      {tabIndex === 4 && <InteractionSection address={contractId} />}
       {tabIndex === 5 && (
         <Typography textAlign={"center"} sx={{ mt: 2 }}>
           This will be available later

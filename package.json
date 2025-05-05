@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -H 0.0.0.0 --port 3001",
     "build": "next build",
-    "start": "next start -H 0.0.0.0",
+    "start": "next start -H 0.0.0.0 --port 3001",
     "lint": "next lint",
     "test": "TZ=UTC jest --config jest.config.unit.ts",
     "test:integration": "TZ=UTC jest --config jest.config.integration.ts",

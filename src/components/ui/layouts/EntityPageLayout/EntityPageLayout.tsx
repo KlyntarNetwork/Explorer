@@ -60,10 +60,6 @@ export const EntityPageLayout: FC<Props> = ({
         height: 150,
         type: "svg",
         data: header.clipBoardValue,
-        image: "/icons/company/CoinIcon.svg",
-        imageOptions: {
-          margin: 2,
-        },
         dotsOptions: {
           color: "#000000",
           type: "classy",

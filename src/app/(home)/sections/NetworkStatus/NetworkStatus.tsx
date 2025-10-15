@@ -2,7 +2,6 @@
 import { FC } from 'react';
 import { Box, List, ListItemButton, Typography } from '@mui/material';
 import Link from 'next/link';
-import { GreenGradientBackground } from '@/components/ui';
 import { BlockchainData } from '@/definitions';
 import { logUserAction } from '@/helpers';
 import { LOCATION, USER_ACTIONS } from '@/constants';
@@ -46,44 +45,35 @@ const links = (epochId?: string | number): LinkItem[] => ([
     description: 'Inspect smart contracts powering RWX.',
   },
   {
-    title: 'Multistaking stats',
-    url: '/contracts/multistaking',
-    description: 'Monitor validators and delegations in one place.',
-  },
-  {
-    title: 'Appchains',
-    url: '/coming-soon',
-    description: 'Preview the catalog of app-specific chains.',
-    status: 'coming_soon',
-  },
-  {
-    title: 'Mutations',
-    url: '/coming-soon',
-    description: 'Stay tuned for upcoming on-chain upgrades.',
-    status: 'coming_soon',
-  },
-  {
     title: 'Charts',
     url: '/coming-soon',
     description: 'Visualize network performance over time.',
-    status: 'coming_soon',
   },
 ]);
 
 export const NetworkStatus:FC<Props> = ({ data }) => {
   return (
-    <GreenGradientBackground
+    <Box
       sx={{
         p: { xs: 3, md: 4 },
         display: 'flex',
         flexDirection: 'column',
         gap: 3,
+        backgroundColor: '#000',
+        borderRadius: 3,
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        boxShadow: '0px 24px 48px rgba(0, 0, 0, 0.35)',
+        height: '100%',
+        minHeight: { xs: 420, md: 460 },
       }}
     >
       <Typography variant='h1' sx={{ fontSize: { xs: 24, md: 28 }, fontWeight: 700 }}>
         Network Info
       </Typography>
-      <List disablePadding sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <List
+        disablePadding
+        sx={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1 }}
+      >
         {links(data.epochId).map(({ title, url, description, status }) => (
           <ContentLink
             title={title}
@@ -94,7 +84,7 @@ export const NetworkStatus:FC<Props> = ({ data }) => {
           />
         ))}
       </List>
-    </GreenGradientBackground>
+    </Box>
   );
 }
 
@@ -111,10 +101,10 @@ const ContentLink: FC<{ title: string, url: string, description: string, status?
       onClick={() => logUserAction(USER_ACTIONS.VISIT_PAGE, { url, location: LOCATION.HOME_PAGE })}
       sx={{
         alignItems: 'flex-start',
-        gap: 2,
-        px: { xs: 2, md: 2.5 },
-        py: { xs: 2, md: 2.5 },
-        borderRadius: 3,
+        gap: 1.5,
+        px: { xs: 1.75, md: 2 },
+        py: { xs: 1.75, md: 2 },
+        borderRadius: 2.5,
         border: '1px solid rgba(255, 255, 255, 0.08)',
         background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.35) 0%, rgba(255, 255, 255, 0.04) 100%)',
         color: 'text.primary',
@@ -130,9 +120,9 @@ const ContentLink: FC<{ title: string, url: string, description: string, status?
     >
       <Box
         sx={{
-          width: 36,
-          height: 36,
-          borderRadius: 2,
+          width: 30,
+          height: 30,
+          borderRadius: 1.5,
           backgroundColor: 'rgba(255, 255, 255, 0.08)',
           display: 'flex',
           alignItems: 'center',
@@ -141,7 +131,7 @@ const ContentLink: FC<{ title: string, url: string, description: string, status?
           mt: 0.5,
         }}
       >
-        <LaunchIcon sx={{ fontSize: 18 }} />
+        <LaunchIcon sx={{ fontSize: 17 }} />
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
         <Typography

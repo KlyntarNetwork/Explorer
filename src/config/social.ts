@@ -11,7 +11,7 @@ export enum KLY_LINKS {
   EXPLORER_TESTNET = 'https://testnet.klyntarscan.org',
   EXPLORER_DEVNET = 'https://devnet.klyntarscan.org',
   WEBSITE = 'https://klyntar.org',
-  TESTNET_FAUCET = 'https://klyntar.org/testnet-faucet',
+  TESTNET_FAUCET = '/testnet-faucet',
   GITHUB = 'https://github.com/KlyntarNetwork',
   TWITTER = 'https://twitter.com/KlyntarNetwork',
   TELEGRAM = 'https://t.me/KlyntarNetwork',

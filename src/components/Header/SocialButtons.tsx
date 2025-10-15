@@ -1,10 +1,12 @@
 import {
   Box,
+  IconButton,
   List,
   ListItemButton,
   Popover,
   Typography,
 } from '@mui/material';
+import type { PopoverOrigin } from '@mui/material/Popover';
 import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import TrendingUpOutlinedIcon from '@mui/icons-material/TrendingUpOutlined';
@@ -20,6 +22,7 @@ import React, { useMemo, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import NextLink from 'next/link';
+import CloseIcon from '@mui/icons-material/Close';
 
 type DropdownItem = {
   title: string;
@@ -138,14 +141,14 @@ export const SocialButtons = () => {
     handleOpen(event);
   };
 
-  const popoverOrigins = useMemo(
+  const popoverOrigins = useMemo<{ anchor: PopoverOrigin; transform: PopoverOrigin }>(
     () => ({
       anchor: isDesktop
-        ? { vertical: 'bottom', horizontal: 'center' as const }
-        : { vertical: 'bottom', horizontal: 'right' as const },
+        ? { vertical: 'bottom', horizontal: 'center' }
+        : { vertical: 'bottom', horizontal: 'right' },
       transform: isDesktop
-        ? { vertical: 'top', horizontal: 'center' as const }
-        : { vertical: 'top', horizontal: 'right' as const },
+        ? { vertical: 'top', horizontal: 'center' }
+        : { vertical: 'top', horizontal: 'right' },
     }),
     [isDesktop],
   );
@@ -182,38 +185,72 @@ export const SocialButtons = () => {
         transformOrigin={popoverOrigins.transform}
         PaperProps={{
           sx: {
-            mt: { xs: 1, md: 1.5 },
-            px: { xs: 2, md: 3 },
-            py: { xs: 2, md: 3 },
-            backgroundColor: '#000',
-            borderRadius: 3,
+            mt: { xs: 0, md: 1.5 },
+            px: { xs: 2, md: 4 },
+            py: { xs: 2, md: 4 },
+            backgroundColor: '#000000',
+            borderRadius: { xs: 0, md: 3 },
             border: '1px solid rgba(255, 255, 255, 0.08)',
             boxShadow: '0px 24px 48px rgba(0, 0, 0, 0.45)',
-            width: {
-              xs: 'calc(100vw - 32px)',
-              sm: 'min(calc(100vw - 48px), 480px)',
-              md: 720,
-            },
-            maxWidth: '100%',
-            overflow: 'visible',
+            width: '100vw',
+            maxWidth: '100vw',
+            left: '0 !important',
+            right: '0 !important',
+            maxHeight: { xs: '100vh', md: 'unset' },
+            overflow: 'hidden',
           },
         }}
       >
         <Box
-          component='nav'
-          aria-label='More navigation'
-          onMouseLeave={isDesktop ? handleClose : undefined}
           sx={{
-            display: 'grid',
-            gap: { xs: 3, md: 4 },
-            gridTemplateColumns: {
-              xs: '1fr',
-              sm: 'repeat(2, minmax(0, 1fr))',
-              md: 'repeat(3, minmax(0, 1fr))',
-            },
             width: '100%',
+            maxHeight: { xs: 'calc(100vh - 96px)', md: 'none' },
+            overflowY: { xs: 'auto', md: 'visible' },
+            pr: { xs: 1, md: 0 },
           }}
         >
+          <Box
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              mb: 2,
+              position: 'sticky',
+              top: 0,
+              py: 0.5,
+              backgroundColor: '#000000',
+              zIndex: 1,
+            }}
+          >
+            <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
+              More
+            </Typography>
+            <IconButton
+              aria-label='Close menu'
+              onClick={handleClose}
+              edge='end'
+              size='small'
+              sx={{ color: 'text.primary' }}
+            >
+              <CloseIcon fontSize='small' />
+            </IconButton>
+          </Box>
+          <Box
+            component='nav'
+            aria-label='More navigation'
+            onMouseLeave={isDesktop ? handleClose : undefined}
+            sx={{
+              display: 'grid',
+              gap: { xs: 3, md: 4 },
+              gridTemplateColumns: {
+                xs: '1fr',
+                sm: 'repeat(2, minmax(0, 1fr))',
+                md: 'repeat(3, minmax(0, 1fr))',
+              },
+              width: '100%',
+              pb: { xs: 2, md: 0 },
+            }}
+          >
           {dropdownSections.map((section) => (
             <Box key={section.title} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               <Typography
@@ -283,6 +320,7 @@ export const SocialButtons = () => {
               </List>
             </Box>
           ))}
+          </Box>
         </Box>
       </Popover>
       {socialIconsWithLinks.map(({ icon: Icon, url }) => (

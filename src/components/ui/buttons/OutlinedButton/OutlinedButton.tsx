@@ -78,7 +78,6 @@ export const OutlinedButton: FC<OutlinedButtonProps> = ({
   return (
     <StyledButton
       {...commonProps}
-      component='button'
       onClick={onClick}
     >
       {icon && icon}

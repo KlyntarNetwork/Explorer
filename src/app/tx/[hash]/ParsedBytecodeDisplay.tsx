@@ -25,13 +25,25 @@ export const ParsedBytecodeDisplay: FC<Props> = ({ bytecode }) => {
   );
 
   useEffect(() => {
-    if (!isEmpty) {
-      (async () => {
-        const parsedData = await decodeCalldata(bytecode);
-        setFunctionData(parsedData);
-      })();
+    if (isEmpty) {
+      setFunctionData(null);
+      return;
     }
-  }, [bytecode]);
+
+    let isMounted = true;
+
+    (async () => {
+      const parsedData = await decodeCalldata(bytecode);
+
+      if (isMounted) {
+        setFunctionData(parsedData);
+      }
+    })();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [bytecode, isEmpty]);
 
   if (isEmpty) {
     return <CodeSnippet>No bytecode provided</CodeSnippet>;

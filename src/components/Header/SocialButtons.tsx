@@ -191,8 +191,8 @@ export const SocialButtons = () => {
             boxShadow: '0px 24px 48px rgba(0, 0, 0, 0.45)',
             width: {
               xs: 'calc(100vw - 32px)',
-              sm: 'min(calc(100vw - 48px), 440px)',
-              md: 560,
+              sm: 'min(calc(100vw - 48px), 480px)',
+              md: 720,
             },
             maxWidth: '100%',
             overflow: 'visible',
@@ -264,7 +264,7 @@ export const SocialButtons = () => {
                         width: 36,
                         height: 36,
                         borderRadius: 2,
-                        backgroundColor: '#000',
+                        backgroundColor: 'rgba(255, 255, 255, 0.08)',
                         flexShrink: 0,
                       }}
                     >

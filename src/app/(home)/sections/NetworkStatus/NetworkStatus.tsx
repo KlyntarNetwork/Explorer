@@ -19,7 +19,7 @@ type LinkItem = {
   status?: 'coming_soon',
 };
 
-const links = (epochId: string): LinkItem[] => ([
+const links = (epochId?: string | number): LinkItem[] => ([
   {
     title: 'Blocks data and stats',
     url: '/blocks',
@@ -27,7 +27,7 @@ const links = (epochId: string): LinkItem[] => ([
   },
   {
     title: 'Epochs data',
-    url: `/epochs/${epochId}`,
+    url: `/epochs/${epochId ?? ''}`,
     description: 'Deep dive into the current and historical epochs.',
   },
   {

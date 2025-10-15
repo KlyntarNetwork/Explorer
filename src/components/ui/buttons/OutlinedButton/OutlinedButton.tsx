@@ -4,11 +4,10 @@ import { Button, ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Link from 'next/link';
 
-interface OutlinedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface OutlinedButtonProps extends Omit<ButtonProps, 'variant'> {
   icon?: React.ReactElement;
   text?: string;
   url?: string;
-  sx?: ButtonProps['sx'];
 }
 
 const StyledButton = styled(Button)(({ theme }) => ({
@@ -27,43 +26,61 @@ export const OutlinedButton: FC<OutlinedButtonProps> = ({
   icon,
   text,
   url = '',
-  onClick,
   sx,
+  onClick,
+  ...rest
 }) => {
   const isLink = !!url;
+  const hasText = Boolean(text);
 
-  const props = {
+  const dimensions = hasText
+    ? {
+        px: {
+          xs: 1.5,
+          md: 2.5,
+        },
+        minWidth: 'auto',
+      }
+    : {
+        width: {
+          xs: '38px',
+          md: '44px',
+        },
+        minWidth: {
+          xs: '38px',
+          md: '44px',
+        },
+      };
+
+  const commonProps = {
     sx: {
-      width: {
-        xs: '38px',
-        md: '44px',
-      },
       height: {
         xs: '38px',
         md: '44px',
       },
-      minWidth: {
-        xs: '38px',
-        md: '44px',
-      },
+      ...dimensions,
       ...sx,
     },
-    variant: 'outlined',
-    ...(isLink
-      ? {
-          component: Link,
-          href: url,
-        }
-      : {
-          component: 'button',
-          onClick,
-        }
-    ),
+    variant: 'outlined' as const,
+    ...rest,
   };
 
+  if (isLink) {
+    return (
+      // @ts-ignore - Next.js Link typing
+      <StyledButton {...commonProps} component={Link} href={url} onClick={onClick}>
+        {icon && icon}
+        {text && text}
+      </StyledButton>
+    );
+  }
+
   return (
-    // @ts-ignore
-    <StyledButton {...props}>
+    <StyledButton
+      {...commonProps}
+      component='button'
+      onClick={onClick}
+    >
       {icon && icon}
       {text && text}
     </StyledButton>

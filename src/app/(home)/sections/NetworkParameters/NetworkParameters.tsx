@@ -1,5 +1,5 @@
 import { FC, ElementType } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import SavingsIcon from '@mui/icons-material/Savings';
 import Groups2Icon from '@mui/icons-material/Groups2';
@@ -82,62 +82,80 @@ export const NetworkParameters:FC<Props> = async ({ data }) => {
   ];
 
   return (
-    <RedGradientBackground sx={{ p: { xs: 3, md: 4 }, pb: { xl: 13, sm: 10 } }}>
-      <Typography variant='h1' sx={{ mb: 3 }}>
+    <RedGradientBackground
+      sx={{
+        p: { xs: 3, md: 4 },
+        pb: { xl: 13, sm: 10 },
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 3,
+      }}
+    >
+      <Typography variant='h1'>
         Network Parameters
       </Typography>
-      <Grid container spacing={2.5}>
+      <Box
+        sx={{
+          display: 'grid',
+          gap: { xs: 2, md: 2.5 },
+          gridTemplateColumns: {
+            xs: 'repeat(1, minmax(0, 1fr))',
+            md: 'repeat(2, minmax(0, 1fr))',
+            xl: 'repeat(3, minmax(0, 1fr))',
+          },
+        }}
+      >
         {parameterItems.map((item) => (
-          <Grid item xs={12} md={6} key={item.title}>
-            <ParameterCard {...item} />
-          </Grid>
+          <ParameterCard key={item.title} {...item} />
         ))}
-      </Grid>
+      </Box>
     </RedGradientBackground>
   );
 };
 
-const iconContainerSx = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: 40,
-  height: 40,
-  borderRadius: '14px',
-  background: 'rgba(255, 255, 255, 0.08)',
-  color: 'primary.main',
-  flexShrink: 0,
-};
-
-const cardSx = {
-  display: 'flex',
-  gap: 2,
-  alignItems: 'flex-start',
-  padding: 24,
-  borderRadius: 24,
-  background: 'rgba(8, 8, 8, 0.85)',
-  border: '1px solid rgba(255, 255, 255, 0.08)',
-  backdropFilter: 'blur(18px)',
-  boxShadow: '0 20px 45px rgba(0, 0, 0, 0.35)',
-  transition: 'transform 0.2s ease, border-color 0.2s ease, background 0.2s ease',
-  ':hover': {
-    transform: 'translateY(-4px)',
-    borderColor: 'rgba(255, 255, 255, 0.18)',
-    background: 'rgba(12, 12, 12, 0.9)',
-  },
-};
-
 const ParameterCard: FC<ParameterItem> = ({ icon: Icon, title, value, description }) => {
   return (
-    <Box sx={cardSx}>
-      <Box sx={iconContainerSx}>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 2,
+        p: { xs: 2, md: 2.5 },
+        borderRadius: 20,
+        background: 'rgba(12, 12, 12, 0.82)',
+        border: '1px solid rgba(255, 255, 255, 0.06)',
+        backdropFilter: 'blur(14px)',
+        transition: 'transform 0.2s ease, background 0.2s ease, border-color 0.2s ease',
+        ':hover': {
+          transform: 'translateY(-2px)',
+          background: 'rgba(18, 18, 18, 0.9)',
+          borderColor: 'rgba(255, 255, 255, 0.12)',
+        },
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 44,
+          height: 44,
+          borderRadius: '16px',
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0))',
+          color: 'primary.main',
+          flexShrink: 0,
+        }}
+      >
         <Icon fontSize='small' />
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, flexGrow: 1 }}>
-        <Typography variant='overline' color='text.secondary'>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75, flexGrow: 1 }}>
+        <Typography variant='subtitle2' sx={{ color: 'text.secondary', textTransform: 'uppercase' }}>
           {title}
         </Typography>
-        <Typography variant='h5' sx={{ fontWeight: 700, wordBreak: 'break-word' }}>
+        <Typography
+          variant='h6'
+          sx={{ fontWeight: 600, lineHeight: 1.3, wordBreak: 'break-word' }}
+        >
           {value}
         </Typography>
         <Typography variant='body2' color='text.secondary'>

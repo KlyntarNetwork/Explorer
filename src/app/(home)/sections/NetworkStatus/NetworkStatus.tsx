@@ -1,6 +1,6 @@
 'use client';
 import { ElementType, FC } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
 import LaunchIcon from '@mui/icons-material/Launch';
 import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
@@ -91,26 +91,42 @@ export const NetworkStatus:FC<Props> = ({ data }) => {
   ];
 
   return (
-    <GreenGradientBackground sx={{ p: { xs: 3, md: 4 } }}>
-      <Typography variant='h1' sx={{ mb: 3 }}>
+    <GreenGradientBackground
+      sx={{
+        p: { xs: 3, md: 4 },
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 3,
+      }}
+    >
+      <Typography variant='h1'>
         Network Info
       </Typography>
-      <Grid container spacing={2.5}>
+      <Box
+        sx={{
+          display: 'grid',
+          gap: { xs: 2, md: 2.5 },
+          gridTemplateColumns: {
+            xs: 'repeat(1, minmax(0, 1fr))',
+            md: 'repeat(2, minmax(0, 1fr))',
+            xl: 'repeat(3, minmax(0, 1fr))',
+          },
+        }}
+      >
         {infoCards.map((item) => (
-          <Grid item xs={12} md={6} key={item.title}>
-            <InfoCard
-              {...item}
-              onClick={() =>
-                !item.disabled &&
-                logUserAction(USER_ACTIONS.VISIT_PAGE, {
-                  url: item.url,
-                  location: LOCATION.HOME_PAGE,
-                })
-              }
-            />
-          </Grid>
+          <InfoCard
+            key={item.title}
+            {...item}
+            onClick={() =>
+              !item.disabled &&
+              logUserAction(USER_ACTIONS.VISIT_PAGE, {
+                url: item.url,
+                location: LOCATION.HOME_PAGE,
+              })
+            }
+          />
         ))}
-      </Grid>
+      </Box>
     </GreenGradientBackground>
   );
 };
@@ -119,53 +135,47 @@ interface InfoCardProps extends InfoCardItem {
   onClick: () => void;
 }
 
-const infoCardIconSx = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: 40,
-  height: 40,
-  borderRadius: '14px',
-  background: 'rgba(255, 255, 255, 0.08)',
-  color: 'secondary.main',
-  flexShrink: 0,
-};
-
-const infoCardSx = {
-  display: 'flex',
-  alignItems: 'flex-start',
-  gap: 2,
-  padding: 24,
-  borderRadius: 24,
-  background: 'rgba(8, 8, 8, 0.85)',
-  border: '1px solid rgba(255, 255, 255, 0.08)',
-  backdropFilter: 'blur(18px)',
-  boxShadow: '0 20px 45px rgba(0, 0, 0, 0.35)',
-  transition: 'transform 0.2s ease, border-color 0.2s ease, background 0.2s ease',
-};
-
 const InfoCard: FC<InfoCardProps> = ({ icon: Icon, title, description, url, disabled, onClick }) => {
   const content = (
     <Box
       sx={{
-        ...infoCardSx,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 2,
+        p: { xs: 2, md: 2.5 },
+        borderRadius: 20,
+        background: 'rgba(12, 12, 12, 0.82)',
+        border: '1px solid rgba(255, 255, 255, 0.06)',
+        backdropFilter: 'blur(14px)',
         cursor: disabled ? 'default' : 'pointer',
         opacity: disabled ? 0.55 : 1,
         ':hover': disabled
           ? {}
           : {
-              transform: 'translateY(-4px)',
-              borderColor: 'rgba(255, 255, 255, 0.18)',
-              background: 'rgba(12, 12, 12, 0.9)',
+              transform: 'translateY(-2px)',
+              background: 'rgba(18, 18, 18, 0.9)',
+              borderColor: 'rgba(255, 255, 255, 0.12)',
             },
       }}
       onClick={disabled ? undefined : onClick}
     >
-      <Box sx={infoCardIconSx}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 44,
+          height: 44,
+          borderRadius: '16px',
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0))',
+          color: 'secondary.main',
+          flexShrink: 0,
+        }}
+      >
         <Icon fontSize='small' />
       </Box>
-      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
-        <Typography variant='subtitle1' sx={{ fontWeight: 700 }}>
+      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 0.75 }}>
+        <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
           {title}
         </Typography>
         <Typography variant='body2' color='text.secondary'>

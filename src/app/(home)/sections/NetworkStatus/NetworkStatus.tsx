@@ -92,18 +92,20 @@ export const NetworkStatus: FC<Props> = ({ data }) => {
 
   return (
     <SectionWrapper title="Network info">
-      {infoCards.map((item) => (
-        <InfoCard
-          key={item.title}
-          {...item}
-          onNavigate={() =>
-            logUserAction(USER_ACTIONS.VISIT_PAGE, {
-              url: item.url,
-              location: LOCATION.HOME_PAGE,
-            })
-          }
-        />
-      ))}
+      <CardsGrid>
+        {infoCards.map((item) => (
+          <InfoCard
+            key={item.title}
+            {...item}
+            onNavigate={() =>
+              logUserAction(USER_ACTIONS.VISIT_PAGE, {
+                url: item.url,
+                location: LOCATION.HOME_PAGE,
+              })
+            }
+          />
+        ))}
+      </CardsGrid>
     </SectionWrapper>
   );
 };
@@ -119,27 +121,45 @@ const SectionWrapper: FC<SectionWrapperProps> = ({ title, children }) => (
     sx={{
       display: 'flex',
       flexDirection: 'column',
-      gap: 2,
+      gap: 2.5,
       px: { xs: 2.5, sm: 3, md: 4 },
       py: { xs: 3, md: 4 },
-      background: 'linear-gradient(135deg, rgba(12, 12, 12, 0.95), rgba(6, 6, 6, 0.92))',
-      borderRadius: { xs: 18, md: 24 },
-      border: '1px solid rgba(255, 255, 255, 0.05)',
-      boxShadow: '0 18px 35px rgba(0, 0, 0, 0.35)',
-      backdropFilter: 'blur(12px)',
+      backgroundColor: 'rgba(14, 14, 14, 0.92)',
+      borderRadius: 14,
+      border: '1px solid rgba(255, 255, 255, 0.06)',
+      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.32)',
+      backdropFilter: 'blur(10px)',
+      height: '100%',
     }}
   >
     <Typography
       variant="h2"
       sx={{
-        fontSize: { xs: '1.5rem', md: '1.75rem' },
+        fontSize: { xs: '1.35rem', md: '1.55rem' },
         fontWeight: 600,
-        color: 'rgba(255, 255, 255, 0.95)',
+        letterSpacing: 0.2,
+        color: 'rgba(255, 255, 255, 0.94)',
       }}
     >
       {title}
     </Typography>
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>{children}</Box>
+    {children}
+  </Box>
+);
+
+const CardsGrid: FC<{ children: ReactNode }> = ({ children }) => (
+  <Box
+    sx={{
+      display: 'grid',
+      gap: { xs: 1.5, md: 2 },
+      gridTemplateColumns: {
+        xs: 'repeat(1, minmax(0, 1fr))',
+        sm: 'repeat(2, minmax(0, 1fr))',
+        xl: 'repeat(3, minmax(0, 1fr))',
+      },
+    }}
+  >
+    {children}
   </Box>
 );
 
@@ -153,31 +173,42 @@ const InfoCard: FC<InfoCardProps> = ({ icon: Icon, title, description, url, disa
       <IconHolder>
         <Icon fontSize="small" />
       </IconHolder>
-      <Box sx={{ flexGrow: 1, minWidth: 0 }}>
-        <Typography
-          variant="subtitle1"
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 }}>
+        <Box
           sx={{
-            fontWeight: 600,
-            color: 'rgba(255, 255, 255, 0.92)',
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+            gap: 1,
           }}
         >
-          {title}
-        </Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              fontWeight: 600,
+              color: 'rgba(255, 255, 255, 0.94)',
+              flex: '1 1 auto',
+              minWidth: 0,
+            }}
+          >
+            {title}
+          </Typography>
+          {disabled ? (
+            <SoonBadge>soon</SoonBadge>
+          ) : (
+            <LaunchIcon sx={{ color: 'rgba(255, 255, 255, 0.5)' }} fontSize="small" />
+          )}
+        </Box>
         <Typography
           variant="body2"
           sx={{
-            color: 'rgba(255, 255, 255, 0.58)',
-            mt: 0.5,
+            color: 'rgba(255, 255, 255, 0.6)',
+            lineHeight: 1.4,
           }}
         >
           {description}
         </Typography>
       </Box>
-      {disabled ? (
-        <SoonBadge>soon</SoonBadge>
-      ) : (
-        <LaunchIcon sx={{ color: 'rgba(255, 255, 255, 0.45)' }} fontSize="small" />
-      )}
     </CardRoot>
   );
 
@@ -189,7 +220,7 @@ const InfoCard: FC<InfoCardProps> = ({ icon: Icon, title, description, url, disa
     <Link
       href={url}
       onClick={onNavigate}
-      style={{ textDecoration: 'none', color: 'inherit' }}
+      style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }}
     >
       {content}
     </Link>
@@ -199,24 +230,25 @@ const InfoCard: FC<InfoCardProps> = ({ icon: Icon, title, description, url, disa
 const CardRoot: FC<{ disabled?: boolean; children: ReactNode }> = ({ disabled, children }) => (
   <Box
     sx={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 2,
-      px: { xs: 2, md: 2.5 },
-      py: { xs: 1.75, md: 2 },
-      background: 'rgba(20, 20, 20, 0.95)',
-      borderRadius: 18,
-      border: '1px solid rgba(255, 255, 255, 0.04)',
-      transition: 'background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease',
-      opacity: disabled ? 0.55 : 1,
+      display: 'grid',
+      gridTemplateColumns: 'auto 1fr',
+      alignItems: 'flex-start',
+      gap: 1.5,
+      padding: { xs: '1.25rem 1.35rem', md: '1.35rem 1.5rem' },
+      backgroundColor: 'rgba(20, 20, 20, 0.92)',
+      borderRadius: 12,
+      border: '1px solid rgba(255, 255, 255, 0.05)',
+      transition: 'border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease',
+      opacity: disabled ? 0.58 : 1,
       pointerEvents: disabled ? 'none' : 'auto',
       ':hover': disabled
         ? {}
         : {
             transform: 'translateY(-2px)',
-            background: 'rgba(28, 28, 28, 0.97)',
-            borderColor: 'rgba(255, 255, 255, 0.1)',
+            borderColor: 'rgba(255, 255, 255, 0.12)',
+            backgroundColor: 'rgba(28, 28, 28, 0.94)',
           },
+      minHeight: { xs: 132, md: 140 },
     }}
   >
     {children}
@@ -226,14 +258,14 @@ const CardRoot: FC<{ disabled?: boolean; children: ReactNode }> = ({ disabled, c
 const IconHolder: FC<{ children: ReactNode }> = ({ children }) => (
   <Box
     sx={{
-      width: 44,
-      height: 44,
-      borderRadius: 14,
-      background: 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.16), rgba(255,255,255,0.04))',
+      width: 48,
+      height: 48,
+      borderRadius: 12,
+      background: 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), rgba(255,255,255,0.05))',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      color: 'rgba(255, 255, 255, 0.88)',
+      color: 'rgba(255, 255, 255, 0.9)',
       flexShrink: 0,
     }}
   >
@@ -244,16 +276,16 @@ const IconHolder: FC<{ children: ReactNode }> = ({ children }) => (
 const SoonBadge: FC<{ children: ReactNode }> = ({ children }) => (
   <Box
     sx={{
-      ml: { xs: 1, md: 2 },
-      px: 1.5,
-      py: 0.5,
-      borderRadius: 999,
-      fontSize: '0.75rem',
+      flexShrink: 0,
+      px: 1,
+      py: 0.35,
+      borderRadius: 10,
+      fontSize: '0.7rem',
       fontWeight: 600,
-      letterSpacing: 1,
+      letterSpacing: 1.5,
       textTransform: 'uppercase',
-      backgroundColor: 'rgba(255, 255, 255, 0.12)',
-      color: 'rgba(255, 255, 255, 0.7)',
+      backgroundColor: 'rgba(255, 255, 255, 0.14)',
+      color: 'rgba(255, 255, 255, 0.75)',
     }}
   >
     {children}

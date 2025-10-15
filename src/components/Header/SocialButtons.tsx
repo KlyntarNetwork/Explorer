@@ -16,7 +16,9 @@ import IntegrationInstructionsOutlinedIcon from '@mui/icons-material/Integration
 import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import { socialIconsWithLinks, KLY_LINKS } from '@/config';
 import { OutlinedButton } from '@/components/ui';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import NextLink from 'next/link';
 
 type DropdownItem = {
@@ -116,6 +118,8 @@ const dropdownSections: DropdownSection[] = [
 export const SocialButtons = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -124,6 +128,27 @@ export const SocialButtons = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (open) {
+      handleClose();
+      return;
+    }
+
+    handleOpen(event);
+  };
+
+  const popoverOrigins = useMemo(
+    () => ({
+      anchor: isDesktop
+        ? { vertical: 'bottom', horizontal: 'center' as const }
+        : { vertical: 'bottom', horizontal: 'right' as const },
+      transform: isDesktop
+        ? { vertical: 'top', horizontal: 'center' as const }
+        : { vertical: 'top', horizontal: 'right' as const },
+    }),
+    [isDesktop],
+  );
 
   return (
     <Box
@@ -144,8 +169,8 @@ export const SocialButtons = () => {
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         aria-controls={open ? 'header-more-menu' : undefined}
-        onClick={handleOpen}
-        onMouseEnter={handleOpen}
+        onClick={handleToggle}
+        onMouseEnter={isDesktop ? handleOpen : undefined}
       />
       <Popover
         id={open ? 'header-more-menu' : undefined}
@@ -153,18 +178,23 @@ export const SocialButtons = () => {
         anchorEl={anchorEl}
         onClose={handleClose}
         disableRestoreFocus
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={popoverOrigins.anchor}
+        transformOrigin={popoverOrigins.transform}
         PaperProps={{
           sx: {
-            mt: 1.5,
+            mt: { xs: 1, md: 1.5 },
             px: { xs: 2, md: 3 },
             py: { xs: 2, md: 3 },
-            backgroundColor: 'rgba(17, 17, 17, 0.92)',
+            backgroundColor: '#000',
             borderRadius: 3,
             border: '1px solid rgba(255, 255, 255, 0.08)',
             boxShadow: '0px 24px 48px rgba(0, 0, 0, 0.45)',
-            minWidth: { xs: 'min(100vw - 32px, 360px)', md: 560 },
+            width: {
+              xs: 'calc(100vw - 32px)',
+              sm: 'min(calc(100vw - 48px), 440px)',
+              md: 560,
+            },
+            maxWidth: '100%',
             overflow: 'visible',
           },
         }}
@@ -172,7 +202,7 @@ export const SocialButtons = () => {
         <Box
           component='nav'
           aria-label='More navigation'
-          onMouseLeave={handleClose}
+          onMouseLeave={isDesktop ? handleClose : undefined}
           sx={{
             display: 'grid',
             gap: { xs: 3, md: 4 },
@@ -181,6 +211,7 @@ export const SocialButtons = () => {
               sm: 'repeat(2, minmax(0, 1fr))',
               md: 'repeat(3, minmax(0, 1fr))',
             },
+            width: '100%',
           }}
         >
           {dropdownSections.map((section) => (
@@ -233,7 +264,7 @@ export const SocialButtons = () => {
                         width: 36,
                         height: 36,
                         borderRadius: 2,
-                        backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                        backgroundColor: '#000',
                         flexShrink: 0,
                       }}
                     >

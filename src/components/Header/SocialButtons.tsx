@@ -189,6 +189,7 @@ export const SocialButtons = () => {
             px: { xs: 2, md: 4 },
             py: { xs: 2, md: 4 },
             backgroundColor: '#000000',
+            backgroundImage: 'none',
             borderRadius: { xs: 0, md: 3 },
             border: '1px solid rgba(255, 255, 255, 0.08)',
             boxShadow: '0px 24px 48px rgba(0, 0, 0, 0.45)',
@@ -218,7 +219,8 @@ export const SocialButtons = () => {
               position: 'sticky',
               top: 0,
               py: 0.5,
-              backgroundColor: '#000000',
+              px: 0.5,
+              backgroundColor: 'transparent',
               zIndex: 1,
             }}
           >
@@ -230,7 +232,15 @@ export const SocialButtons = () => {
               onClick={handleClose}
               edge='end'
               size='small'
-              sx={{ color: 'text.primary' }}
+              disableRipple
+              disableFocusRipple
+              sx={{
+                color: 'text.primary',
+                backgroundColor: 'transparent',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                },
+              }}
             >
               <CloseIcon fontSize='small' />
             </IconButton>

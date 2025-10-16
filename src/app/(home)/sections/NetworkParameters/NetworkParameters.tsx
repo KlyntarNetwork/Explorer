@@ -62,14 +62,27 @@ const ContentItem: FC<{ title: string, value: string | number, prominent?: boole
   value,
   prominent,
 }) => {
+  const normalizedValue = (() => {
+    if (value === undefined || value === null) {
+      return 'N/A';
+    }
+
+    if (typeof value === 'number') {
+      return value.toLocaleString();
+    }
+
+    const trimmed = value.trim();
+
+    return trimmed.length > 0 ? trimmed : 'N/A';
+  })();
+
   return (
     <Box
       sx={{
         position: 'relative',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        gap: 1.25,
+        alignItems: 'flex-start',
+        gap: 1.5,
         width: '100%',
         px: { xs: 1.75, md: 2 },
         py: { xs: 1.75, md: 2 },
@@ -86,55 +99,43 @@ const ContentItem: FC<{ title: string, value: string | number, prominent?: boole
         },
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+      <Box
+        sx={{
+          width: 30,
+          height: 30,
+          borderRadius: 1.5,
+          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+          mt: 0.5,
+        }}
+      >
         <Box
           sx={{
-            width: 30,
-            height: 30,
-            borderRadius: 1.5,
-            backgroundColor: 'rgba(255, 255, 255, 0.08)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
+            width: prominent ? 11 : 9,
+            height: prominent ? 11 : 9,
+            borderRadius: '50%',
+            backgroundColor: prominent ? 'rgba(255, 87, 110, 0.9)' : 'rgba(255, 255, 255, 0.32)',
+            boxShadow: prominent
+              ? '0 0 0 4px rgba(255, 87, 110, 0.24)'
+              : '0 0 0 4px rgba(255, 255, 255, 0.08)',
           }}
-        >
-          <Box
-            sx={{
-              width: prominent ? 11 : 9,
-              height: prominent ? 11 : 9,
-              borderRadius: '50%',
-              backgroundColor: prominent ? 'rgba(255, 87, 110, 0.9)' : 'rgba(255, 255, 255, 0.32)',
-              boxShadow: prominent
-                ? '0 0 0 4px rgba(255, 87, 110, 0.24)'
-                : '0 0 0 4px rgba(255, 255, 255, 0.08)',
-            }}
-          />
-        </Box>
+        />
+      </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
         <Typography
-          variant='overline'
-          sx={{
-            letterSpacing: 0.8,
-            fontWeight: 600,
-            textTransform: 'uppercase',
-            color: 'text.secondary',
-          }}
+          variant='subtitle2'
+          component='span'
+          sx={{ fontWeight: 600 }}
         >
           {title}
         </Typography>
+        <Typography variant='body2' color='text.secondary'>
+          {normalizedValue}
+        </Typography>
       </Box>
-
-      <Typography
-        component='span'
-        sx={{
-          fontSize: { xs: 20, md: 22 },
-          fontWeight: 700,
-          wordBreak: 'break-word',
-          color: 'text.primary',
-        }}
-      >
-        {value}
-      </Typography>
     </Box>
   );
 }

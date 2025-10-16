@@ -44,7 +44,7 @@ export const NetworkParameters:FC<Props> = async ({ data }) => {
         spacing={2}
         sx={{
           mt: 0,
-          '--NetworkParameter-minHeight': '92px',
+          '--NetworkParameter-minHeight': '72px',
         }}
       >
         {parameters(data).map(({ title, value, md = 6 }) => (
@@ -84,8 +84,8 @@ const ContentItem: FC<{ title: string, value: string | number, prominent?: boole
         alignItems: 'flex-start',
         gap: 1.5,
         width: '100%',
-        px: { xs: 1.75, md: 2 },
-        py: { xs: 1.75, md: 2 },
+        px: { xs: 1.5, md: 1.75 },
+        py: { xs: 1.5, md: 1.75 },
         borderRadius: 2.5,
         border: '1px solid rgba(255, 255, 255, 0.08)',
         background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.35) 0%, rgba(255, 255, 255, 0.04) 100%)',
@@ -101,8 +101,8 @@ const ContentItem: FC<{ title: string, value: string | number, prominent?: boole
     >
       <Box
         sx={{
-          width: 30,
-          height: 30,
+          width: 28,
+          height: 28,
           borderRadius: 1.5,
           backgroundColor: 'rgba(255, 255, 255, 0.08)',
           display: 'flex',

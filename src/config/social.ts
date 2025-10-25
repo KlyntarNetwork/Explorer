@@ -25,8 +25,6 @@ export enum KLY_LINKS {
   STAKING = 'https://docs.klyntar.org/build-core-and-join-network/staking/default-staking/staking',
   RWX_CONTRACTS = 'https://docs.klyntar.org/rwx-contracts/create-rwx-contract-and-deploy-with-web1337',
   CMC = 'https://coinmarketcap.com/',
-  PRIVACY_POLICY = 'https://klyntar.org/privacy-policy',
-  PORTAL = 'https://portal.klyntar.org',
   TOKENS = '#'
 }
 

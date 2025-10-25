@@ -10,7 +10,9 @@ export enum KLY_LINKS {
   EXPLORER_MAINNET = 'https://klyntarscan.org',
   EXPLORER_TESTNET = 'https://testnet.klyntarscan.org',
   EXPLORER_DEVNET = 'https://devnet.klyntarscan.org',
+  EXPLORER = 'https://klyntarscan.org',
   WEBSITE = 'https://klyntar.org',
+  PORTAL = 'https://portal.klyntar.org',
   TESTNET_FAUCET = 'https://klyntar.org/testnet-faucet',
   GITHUB = 'https://github.com/KlyntarNetwork',
   TWITTER = 'https://twitter.com/KlyntarNetwork',
@@ -20,12 +22,14 @@ export enum KLY_LINKS {
   REDDIT = 'https://www.reddit.com/r/KlyntarNetwork',
   FACEBOOK = 'https://www.facebook.com/KlyntarNetwork/',
   DOCS = 'https://docs.klyntar.org',
+  PRIVACY_POLICY = 'https://klyntar.org/privacy-policy',
   HOW_TO_RUN_A_VALIDATOR = 'https://docs.klyntar.org/build-core-and-join-network/become-kly-validator',
   MULTISTAKING = 'https://docs.klyntar.org/project-litepaper-and-main-features/multistaking-native-liquid-staking-multichain-multiasset-staking-and-much-more',
   STAKING = 'https://docs.klyntar.org/build-core-and-join-network/staking/default-staking/staking',
   RWX_CONTRACTS = 'https://docs.klyntar.org/rwx-contracts/create-rwx-contract-and-deploy-with-web1337',
   CMC = 'https://coinmarketcap.com/',
-  TOKENS = '#'
+  BRAND_KIT = 'https://klyntar.org/brand-kit',
+  TOKENS = '#',
 }
 
 export const socialIconsWithLinks: Array<{

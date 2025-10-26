@@ -4,7 +4,6 @@ import { FC } from 'react';
 import Link from 'next/link';
 import { Box, Container, Typography } from '@mui/material';
 import { usePathname } from 'next/navigation';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import GitHubIcon from '@public/icons/social/GitHub.svg';
 import TwitterIcon from '@public/icons/social/Twitter.svg';
 import TelegramIcon from '@public/icons/social/Telegram.svg';
@@ -88,12 +87,6 @@ const FOOTER_SOCIAL_BUTTONS: FooterSocialButtonProps[] = [
   { title: 'Reddit', href: KLY_LINKS.REDDIT, Icon: RedditIcon },
   { title: 'Facebook', href: KLY_LINKS.FACEBOOK, Icon: FacebookIcon },
 ];
-
-const BRANDED_RESOURCE: FooterResourcePillProps = {
-  href: KLY_LINKS.BRAND_KIT,
-  label: 'Branding',
-  Icon: ArrowOutwardIcon,
-};
 
 export const Footer = () => {
   const pathname = usePathname();
@@ -248,7 +241,6 @@ export const Footer = () => {
               {FOOTER_SOCIAL_BUTTONS.map((btn) => (
                 <FooterSocialButton key={btn.href} {...btn} />
               ))}
-              <FooterResourcePill {...BRANDED_RESOURCE} />
             </Box>
 
             <Box
@@ -286,12 +278,6 @@ type FooterLinkItemProps = {
 type FooterSocialButtonProps = {
   title: string;
   href: string;
-  Icon?: FC<any>;
-};
-
-type FooterResourcePillProps = {
-  href: string;
-  label: string;
   Icon?: FC<any>;
 };
 
@@ -362,11 +348,6 @@ const FooterSocialButton: FC<FooterSocialButtonProps> = ({ title, href, Icon }) 
         backgroundColor: 'rgba(255,255,255,0.1)',
       },
       lineHeight: 0,
-      '& svg': {
-        display: 'block',
-        width: '1.25rem',
-        height: '1.25rem',
-      },
     }}
     onClick={() =>
       logUserAction(USER_ACTIONS.VISIT_SOCIAL_MEDIA, {
@@ -375,57 +356,26 @@ const FooterSocialButton: FC<FooterSocialButtonProps> = ({ title, href, Icon }) 
       })
     }
   >
-    {Icon && <Icon aria-hidden='true' />}
+    {Icon && (
+      <Box
+        component='span'
+        sx={{
+          display: 'grid',
+          placeItems: 'center',
+          width: '1.5rem',
+          height: '1.5rem',
+          '& svg': {
+            display: 'block',
+            width: '100%',
+            height: 'auto',
+          },
+        }}
+      >
+        <Icon aria-hidden='true' focusable='false' />
+      </Box>
+    )}
   </Box>
 );
-
-const FooterResourcePill: FC<FooterResourcePillProps> = ({ href, label, Icon }) => {
-  const isExternal = href.startsWith('http');
-
-  return (
-    <Box
-      component={Link}
-      href={href}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noopener noreferrer' : undefined}
-      prefetch={false}
-      sx={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '0.75rem',
-        borderRadius: '999px',
-        border: '1px solid rgba(255,255,255,0.15)',
-        padding: '0.5rem 1.25rem',
-        textDecoration: 'none',
-        fontSize: '0.6875rem',
-        letterSpacing: '0.35em',
-        textTransform: 'uppercase',
-        color: '#fff',
-        backgroundColor: 'transparent',
-        transition: 'border-color 0.3s ease, background-color 0.3s ease',
-        '&:hover': {
-          borderColor: '#fff',
-          backgroundColor: 'rgba(255,255,255,0.1)',
-        },
-        lineHeight: 0,
-        '& svg': {
-          display: 'block',
-          width: '1rem',
-          height: '1rem',
-        },
-      }}
-      onClick={() =>
-        logUserAction(USER_ACTIONS.VISIT_PAGE, {
-          location: LOCATION.FOOTER,
-          url: href,
-        })
-      }
-    >
-      {Icon && <Icon aria-hidden='true' style={{ width: '1rem', height: '1rem' }} />}
-      <Typography component='span'>{label}</Typography>
-    </Box>
-  );
-};
 
 const FooterContactLink: FC<FooterLinkItemProps> = ({ label, href, action }) => (
   <Box

@@ -41,9 +41,9 @@ const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
     title: 'Sites',
     links: [
       {
-        label: 'Explorer',
-        href: KLY_LINKS.EXPLORER,
-        action: USER_ACTIONS.VISIT_EXPLORER,
+        label: 'Site',
+        href: KLY_LINKS.WEBSITE,
+        action: USER_ACTIONS.VISIT_PAGE,
       },
       {
         label: 'Docs',
@@ -72,8 +72,8 @@ const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
       },
       {
         label: 'Appchains',
-        href: KLY_LINKS.DOCS,
-        action: USER_ACTIONS.VISIT_DOCUMENTATION,
+        href: '#',
+        action: USER_ACTIONS.VISIT_PAGE,
       },
     ],
   },
@@ -91,7 +91,7 @@ const FOOTER_SOCIAL_BUTTONS: FooterSocialButtonProps[] = [
 
 const BRANDED_RESOURCE: FooterResourcePillProps = {
   href: KLY_LINKS.BRAND_KIT,
-  label: 'Brand resources',
+  label: 'Branding',
   Icon: ArrowOutwardIcon,
 };
 
@@ -179,7 +179,7 @@ export const Footer = () => {
                 action={USER_ACTIONS.VISIT_PAGE}
               />
               <FooterContactLink
-                label='Brand resources'
+                label='Branding'
                 href={KLY_LINKS.BRAND_KIT}
                 action={USER_ACTIONS.VISIT_THIRD_PARTY_SOURCE}
               />
@@ -361,7 +361,9 @@ const FooterSocialButton: FC<FooterSocialButtonProps> = ({ title, href, Icon }) 
         borderColor: '#fff',
         backgroundColor: 'rgba(255,255,255,0.1)',
       },
+      lineHeight: 0,
       '& svg': {
+        display: 'block',
         width: '1.25rem',
         height: '1.25rem',
       },
@@ -405,7 +407,9 @@ const FooterResourcePill: FC<FooterResourcePillProps> = ({ href, label, Icon }) 
           borderColor: '#fff',
           backgroundColor: 'rgba(255,255,255,0.1)',
         },
+        lineHeight: 0,
         '& svg': {
+          display: 'block',
           width: '1rem',
           height: '1rem',
         },

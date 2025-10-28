@@ -116,13 +116,13 @@ export const Footer = () => {
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '1rem', md: '1.25rem' } }}>
               <Typography
                 component='span'
                 sx={{
                   fontSize: '0.75rem',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.55em',
+                  letterSpacing: { xs: '0.4em', md: '0.55em' },
                   color: 'rgba(255,255,255,0.45)',
                 }}
               >
@@ -132,10 +132,10 @@ export const Footer = () => {
                 component='h2'
                 sx={{
                   maxWidth: '45rem',
-                  fontSize: { xs: '2rem', sm: '2.125rem' },
+                  fontSize: { xs: '1.75rem', sm: '2.125rem' },
                   fontWeight: 300,
                   textTransform: 'uppercase',
-                  letterSpacing: '0.3em',
+                  letterSpacing: { xs: '0.22em', md: '0.3em' },
                   lineHeight: 1.2,
                 }}
               >
@@ -146,7 +146,7 @@ export const Footer = () => {
                 sx={{
                   maxWidth: '36rem',
                   fontSize: { xs: '0.9375rem', sm: '1rem' },
-                  lineHeight: { xs: '1.8', sm: '1.75' },
+                  lineHeight: { xs: '1.75', sm: '1.75' },
                   color: 'rgba(255,255,255,0.65)',
                 }}
               >
@@ -158,10 +158,10 @@ export const Footer = () => {
             <Box
               sx={{
                 display: 'grid',
-                gap: '1.5rem',
+                gap: { xs: '1.25rem', md: '1.5rem' },
                 fontSize: '0.75rem',
                 textTransform: 'uppercase',
-                letterSpacing: '0.35em',
+                letterSpacing: { xs: '0.25em', md: '0.35em' },
                 color: 'rgba(255,255,255,0.55)',
                 gridTemplateColumns: { sm: 'repeat(2, minmax(0,1fr))' },
               }}
@@ -237,7 +237,14 @@ export const Footer = () => {
               justifyContent: { md: 'space-between' },
             }}
           >
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: { xs: '0.5rem', sm: '0.75rem' },
+                alignItems: 'center',
+              }}
+            >
               {FOOTER_SOCIAL_BUTTONS.map((btn) => (
                 <FooterSocialButton key={btn.href} {...btn} />
               ))}
@@ -249,7 +256,7 @@ export const Footer = () => {
                 flexDirection: { xs: 'column', sm: 'row' },
                 gap: { xs: '0.75rem', sm: '1.5rem' },
                 fontSize: '0.75rem',
-                letterSpacing: '0.32em',
+                letterSpacing: { xs: '0.24em', md: '0.32em' },
                 textTransform: 'uppercase',
                 color: 'rgba(255,255,255,0.5)',
               }}
@@ -291,10 +298,10 @@ const FooterNavigationLink: FC<FooterLinkItemProps> = ({ label, href, action }) 
     sx={{
       display: 'inline-flex',
       alignItems: 'center',
-      gap: '1rem',
+      gap: { xs: '0.75rem', md: '1rem' },
       textDecoration: 'none',
       color: 'rgba(255,255,255,0.7)',
-      letterSpacing: '0.1em',
+      letterSpacing: { xs: '0.08em', md: '0.1em' },
       fontSize: '0.875rem',
       transition: 'color 0.3s ease',
       '&:hover': {
@@ -303,12 +310,12 @@ const FooterNavigationLink: FC<FooterLinkItemProps> = ({ label, href, action }) 
       '& span:first-of-type': {
         display: 'block',
         height: '1px',
-        width: '1.5rem',
+        width: { xs: '1.25rem', md: '1.5rem' },
         backgroundColor: 'rgba(255,255,255,0.25)',
         transition: 'width 0.3s ease, background-color 0.3s ease',
       },
       '&:hover span:first-of-type': {
-        width: '3rem',
+        width: { xs: '2.5rem', md: '3rem' },
         backgroundColor: '#fff',
       },
     }}
@@ -387,12 +394,13 @@ const FooterContactLink: FC<FooterLinkItemProps> = ({ label, href, action }) => 
     sx={{
       display: 'inline-flex',
       alignItems: 'center',
-      gap: '1rem',
+      gap: { xs: '0.5rem', md: '1rem' },
       borderRadius: '999px',
       border: '1px solid rgba(255,255,255,0.12)',
-      padding: '0.75rem 1.25rem',
+      padding: { xs: '0.75rem 0.875rem', md: '0.75rem 1.25rem' },
       textDecoration: 'none',
-      letterSpacing: '0.35em',
+      letterSpacing: { xs: '0.12em', md: '0.35em' },
+      fontSize: { xs: '0.7rem', md: '0.75rem' },
       color: '#fff',
       transition: 'border-color 0.3s ease, background-color 0.3s ease',
       '&:hover': {
@@ -401,7 +409,7 @@ const FooterContactLink: FC<FooterLinkItemProps> = ({ label, href, action }) => 
       },
       '& span:first-of-type': {
         display: 'block',
-        width: '2rem',
+        width: { xs: '1.25rem', md: '2rem' },
         height: '1px',
         backgroundColor: 'rgba(255,255,255,0.25)',
       },

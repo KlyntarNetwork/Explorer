@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useQueryParams } from './useQueryParams';
 
@@ -15,16 +15,38 @@ export function useQueryShard(shardsList: ComboboxItemProps[]) {
     pathname
   } = useQueryParams();
 
-  const [query, setQuery] = useState<ComboboxItemProps|undefined>(shardsList[0]);
+  const [query, setQuery] = useState<ComboboxItemProps | undefined>(shardsList[0]);
+
+  const setQueryParameters = useCallback(
+    (shard: string, shardWasFound: boolean) => {
+      const params = new URLSearchParams(searchParams);
+      params.set('shard', shard);
+
+      if (!shardWasFound) {
+        params.set('page', String(1));
+      }
+
+      replace(`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [pathname, replace, searchParams],
+  );
 
   useEffect(() => {
+    if (!shardsList.length) {
+      setQuery(undefined);
+      return;
+    }
+
     const shardById = shardsList.find(i => i.label === initialShard);
 
-    const shard  = shardById ? shardById : shardsList[0];
+    const shard = shardById ? shardById : shardsList[0];
 
     setQuery(shard);
-    setQueryParameters(shard.label, !!shardById);
-  }, [initialShard, shardsList]);
+
+    if (shard) {
+      setQueryParameters(shard.label, !!shardById);
+    }
+  }, [initialShard, setQueryParameters, shardsList]);
 
   const handleQueryChange = (_: any, newValue: ComboboxItemProps) => {
     if (newValue && newValue.label) {
@@ -32,15 +54,6 @@ export function useQueryShard(shardsList: ComboboxItemProps[]) {
     } else {
       setQuery(undefined);
     }
-  }
-
-  const setQueryParameters = (shard: string, shardWasFound: boolean) => {
-    const params = new URLSearchParams(searchParams);
-    params.set('shard', shard)
-    if (!shardWasFound) {
-      params.set('page', String(1));
-    }
-    replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
   return {

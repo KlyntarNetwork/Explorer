@@ -1,7 +1,8 @@
 export enum LOCATION {
   HEADER = 'header',
   MOBILE_MENU = 'mobile_menu',
-  HOME_PAGE = 'home_page'
+  HOME_PAGE = 'home_page',
+  FOOTER = 'footer',
 }
 
 export enum USER_ACTIONS {
@@ -10,4 +11,8 @@ export enum USER_ACTIONS {
   VISIT_PAGE = 'visit_page', // url, location
   RETRY_ON_ERROR = 'retry_on_error',
   GO_BACK_FROM_COMING_SOON_PAGE = 'go_back_from_coming_soon_page',
+  VISIT_SOCIAL_MEDIA = 'visit_social_media', // provider, location
+  VISIT_DOCUMENTATION = 'visit_documentation', // url, location
+  VISIT_THIRD_PARTY_SOURCE = 'visit_third_party_source', // url, location
+  VISIT_EXPLORER = 'visit_explorer', // url, location
 }
